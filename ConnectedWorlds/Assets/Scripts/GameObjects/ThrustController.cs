@@ -12,8 +12,12 @@ public class ThrustController : MonoBehaviour {
 	private SpriteRenderer[] mAllRenderers;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		mAllRenderers =  GetComponentsInChildren<SpriteRenderer>();
+	}
+
+	void Start() {
+
 	}
 
 	public void EnableThruster(){

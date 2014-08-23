@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ConnectedWorldsEngine;
 
 public class PlayerController : MonoBehaviour {
 
@@ -19,6 +20,8 @@ public class PlayerController : MonoBehaviour {
 	#endregion
 
 	#region Member variables
+
+	private uint mObjectFlags = ObjectFlags.SHIP | ObjectFlags.TEAM_PLAYER;
 
 	private UILabel DEBUGLABEL;
 
@@ -105,11 +108,21 @@ public class PlayerController : MonoBehaviour {
 		DrawDebug();
 	}
 
+	#region Collision Triggers
+
+	void OnTriggerEnter2D(Collider2D other){
+		Debug.Log("TRIGGER!" + other.gameObject.name);
+	}
+
+	#endregion
+
 	private void DrawDebug(){
 		Debug.DrawRay(transform.position, rigidbody2D.velocity, Color.green);
 		Debug.DrawRay(transform.position, transform.up * 4.0f, Color.white);
 		Debug.DrawRay(transform.position, transform.right * 4.0f, Color.yellow);
 	}
+
+	#region UI Toggles
 
 	private void toggleSASButton(){
 		GO_sasInside.GetComponent<UISprite>().color = (!mTempSAS_DISABLE && mSAS_ENABLED)?kSASEnableColor:(mTempSAS_DISABLE && mSAS_ENABLED)?kSASTempDisableColor:kSASDisableColor;
@@ -121,4 +134,5 @@ public class PlayerController : MonoBehaviour {
 		GO_tcvLabel.GetComponent<UILabel>().color = (!mTempTVC_DISABLE && mTVC_ENABLED)?Color.white:kTVCDisableColor;
 	}
 
+	#endregion
 }
