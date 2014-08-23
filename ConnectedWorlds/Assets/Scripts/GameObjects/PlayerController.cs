@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour {
 	private bool mTVC_ENABLED = false;
 	private bool mTempTVC_DISABLE = false;
 
+	private ThrustController[] mThrusters;
+
+
+	// Colors
 	private Color kSASDisableColor = Color.Lerp(Color.green, Color.black, 0.8f);
 	private Color kSASTempDisableColor = Color.Lerp(Color.green, Color.grey, 0.5f);
 	private Color kSASEnableColor = Color.green;
@@ -49,6 +53,11 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		DEBUGLABEL = GO_DEBUG.GetComponent<UILabel>();
 		DEBUGLABEL.text = "";
+
+		mThrusters = GetComponentsInChildren<ThrustController>();
+		foreach(ThrustController thruster in mThrusters){
+			thruster.DisableThruster();
+		}
 	}
 	
 	// Update is called once per frame
