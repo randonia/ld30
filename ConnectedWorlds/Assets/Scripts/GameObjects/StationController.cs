@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StationController : MonoBehaviour {
+public class StationController : CWMonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

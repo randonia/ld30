@@ -2,7 +2,7 @@
 using System.Collections;
 using ConnectedWorldsEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : CWMonoBehaviour {
 
 	#region Gameobject References
 
@@ -20,8 +20,6 @@ public class PlayerController : MonoBehaviour {
 	#endregion
 
 	#region Member variables
-
-	private uint mObjectFlags = ObjectFlags.SHIP | ObjectFlags.TEAM_PLAYER;
 
 	private UILabel DEBUGLABEL;
 
@@ -51,6 +49,10 @@ public class PlayerController : MonoBehaviour {
 	private const float kCamZ = -10;
 
 	#endregion
+
+	void Awake() {
+		setFlags(ObjectFlags.SHIP | ObjectFlags.TEAM_PLAYER);
+	}
 
 	// Use this for initialization
 	void Start () {

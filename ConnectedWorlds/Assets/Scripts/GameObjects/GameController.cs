@@ -15,6 +15,23 @@ namespace ConnectedWorldsEngine
 	}
 }
 
+public class CWMonoBehaviour : MonoBehaviour{
+	protected uint mObjectFlags;
+
+	public bool checkFlags(uint flagsToCheck){
+		return (mObjectFlags & flagsToCheck) == flagsToCheck;
+	}
+
+	public void setFlags(uint flagsToSet){
+		mObjectFlags |= flagsToSet;
+	}
+
+	public void clearFlags(uint flagsToClear){
+		mObjectFlags = (flagsToClear ^ uint.MaxValue) & mObjectFlags;
+	}
+
+}
+
 public class GameController : MonoBehaviour {
 
 	// Use this for initialization
