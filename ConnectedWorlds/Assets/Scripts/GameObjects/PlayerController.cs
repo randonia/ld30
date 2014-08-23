@@ -70,18 +70,23 @@ public class PlayerController : MonoBehaviour {
 		toggleTVCButton();
 
 		// Translation
-		Vector2 thrustVec = new Vector2(Input.GetAxis("thrust"), Input.GetAxis ("strafe"));
 		float thrustScale = 5.0f;
-		rigidbody2D.AddForce(transform.right * thrustVec.x * thrustScale);
-		rigidbody2D.AddForce(transform.up * thrustVec.y * thrustScale);
+		if(!mTVC_ENABLED || mTempTVC_DISABLE){
+			Vector2 thrustVec = new Vector2(Input.GetAxis("thrust"), Input.GetAxis ("strafe"));
+			rigidbody2D.AddForce(transform.right * thrustVec.x * thrustScale);
+			rigidbody2D.AddForce(transform.up * thrustVec.y * thrustScale);
+		} else {
+			rigidbody2D.AddForce(-rigidbody2D.velocity * thrustScale * 0.2f);
+		}
+		DEBUGLABEL.text = rigidbody2D.velocity.ToString();
 
 		// Rotation
+		float rotScale = 0.35f;
 		if(!mSAS_ENABLED || mTempSAS_DISABLE){
-			float rotScale = 0.35f;
 			float rotAmount = Input.GetAxis("rotate");
 			rigidbody2D.AddTorque(rotAmount * rotScale);
 		} else {
-				rigidbody2D.AddTorque(-(rigidbody2D.angularVelocity * 0.05f));
+				rigidbody2D.AddTorque(-(rigidbody2D.angularVelocity * rotScale * 0.1f));
 		}
 
 		// Update the camera
