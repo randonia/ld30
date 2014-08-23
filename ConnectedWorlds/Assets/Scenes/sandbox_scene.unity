@@ -1332,6 +1332,7 @@ GameObject:
   - 114: {fileID: 449529504}
   - 58: {fileID: 449529506}
   - 114: {fileID: 449529507}
+  - 120: {fileID: 449529508}
   m_Layer: 0
   m_Name: station_01_01
   m_TagString: Untagged
@@ -1418,6 +1419,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb598011ad3e414c8da6ce36ee8dc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
+  mBeamOffset: {x: 0, y: -1.01999998}
+--- !u!120 &449529508
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 449529502}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions: []
+  m_Parameters:
+    startWidth: 1
+    endWidth: 1
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
 --- !u!1 &744322441
 GameObject:
   m_ObjectHideFlags: 0

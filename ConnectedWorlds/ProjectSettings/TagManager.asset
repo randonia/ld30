@@ -37,15 +37,23 @@ TagManager:
   User Layer 30: 
   User Layer 31: 
   m_SortingLayers:
-  - name: Environment
-    userID: 1
-    uniqueID: 821722591
-    locked: 0
   - name: Default
     userID: 0
     uniqueID: 0
     locked: 0
+  - name: Environment
+    userID: 1
+    uniqueID: 821722591
+    locked: 0
+  - name: fx_mid
+    userID: 4
+    uniqueID: 203664109
+    locked: 0
   - name: Player
     userID: 2
     uniqueID: 1804179481
+    locked: 0
+  - name: fx_top
+    userID: 3
+    uniqueID: 778559209
     locked: 0
