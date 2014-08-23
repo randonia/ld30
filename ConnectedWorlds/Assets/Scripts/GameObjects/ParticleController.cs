@@ -34,7 +34,7 @@ public class ParticleController : MonoBehaviour {
 		float len = GO_ParticleSystems.Length;
 		for(int i = 0; i < len; ++i)
 		{
-			GO_ParticleSystems[i].transform.position = ((Vector2)GO_Player.transform.position) - (((i+1) / len) * vec_diff * 0.25f);
+			GO_ParticleSystems[i].transform.position = ((Vector2)GO_Player.transform.position) - (((i+1) / len) * vec_diff * 0.05f);
 		}
 	}
 }
