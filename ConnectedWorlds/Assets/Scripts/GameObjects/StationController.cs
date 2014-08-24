@@ -53,7 +53,7 @@ public class StationController : CWMonoBehaviour {
 	void OnTriggerExit2D(Collider2D other){
 		Debug.Log ("Object " + other.gameObject.name + " leaving station trigger zone");
 		CWMonoBehaviour cwmbOther = other.gameObject.GetComponent<CWMonoBehaviour>();
-		if(cwmbOther.checkFlags(ObjectFlags.SHIP)){
+		if(cwmbOther.checkFlags(ObjectFlags.PLAYER)){
 			removeShip(other.gameObject);
 		}
 		if(cwmbOther.checkFlags(ObjectFlags.PERCEPTION_SHIP)){

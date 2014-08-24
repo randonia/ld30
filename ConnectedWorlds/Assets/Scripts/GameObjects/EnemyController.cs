@@ -38,6 +38,9 @@
 		// State handling
 		private EnemyState mState;
 
+		// Movement handling
+		public float mMaxSpeed = 10.0f;
+
 		// Combat handling
 		private GameObject mCurrentTarget;
 		private float mTargetRange = 10.0f;
@@ -83,6 +86,18 @@
 
 		#region Update methods
 
+		void moveToPoint(Vector3 dest){
+			moveToPoint((Vector2)dest);
+		}
+
+		void moveToPoint(Vector2 dest){
+			if(rigidbody2D.velocity.sqrMagnitude <= (mMaxSpeed * mMaxSpeed)){
+				Vector2 dirToMove = dest - (Vector2)transform.position;
+				dirToMove.Normalize();
+				rigidbody2D.AddForce(dirToMove);
+			} 
+		}
+
 		void updateIdle(){
 
 		}
@@ -92,6 +107,11 @@
 		}
 
 		void updateAttacking(){
+			Vector2 dirFromTarget = (transform.position - mCurrentTarget.transform.position).normalized;
+			// Aim specific number of units short of the target
+			Vector2 shortPosition = ((Vector2)mCurrentTarget.transform.position + dirFromTarget * 5.0f);
+			moveToPoint(shortPosition);
+			Debug.DrawLine(transform.position, shortPosition, Color.green);
 			Debug.DrawLine(gunPosition, mCurrentTarget.transform.position, Color.red);
 		}
 
