@@ -10,7 +10,11 @@ public class StationController : CWMonoBehaviour {
 	public Object GO_LRPREFAB;
 	#endregion
 
-	public Vector2 mBeamOffset;
+	// The offset of the actual "Dock Point" where a player can dock
+	public Vector2 mDockOffset;
+	[Tooltip("Number of meters required to be within to start the dock. 1 Unity Unit == 10 meters")]
+	public int mAutoDockingDistance = 10;
+
 
 	private List<GameObject> mNearbyShips;
 	private List<GameObject> mLineRenderers;
@@ -28,7 +32,7 @@ public class StationController : CWMonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		for(int i = 0; i < mNearbyShips.Count; ++i){
-			mLineRenderers[i].GetComponent<LineRenderer>().SetPosition(0, ((Vector2)gameObject.transform.position + mBeamOffset));
+			mLineRenderers[i].GetComponent<LineRenderer>().SetPosition(0, getDockPosition());
 			mLineRenderers[i].GetComponent<LineRenderer>().SetPosition(1, mNearbyShips[i].transform.position);
 		}
 	}
@@ -55,6 +59,16 @@ public class StationController : CWMonoBehaviour {
 		if(cwmbOther.checkFlags(ObjectFlags.PERCEPTION_SHIP)){
 			other.GetComponent<PerceptionTriggerController>().OnTriggerExit2D(collider2D);
 		}
+	}
+
+	// Gets the position of the actual dock point
+	public Vector3 getDockPosition(){
+		return transform.position + (Vector3)mDockOffset;
+	}
+
+	// Gets the squared distance required to dock
+	public float getDistanceSqr(){
+		return (mAutoDockingDistance * mAutoDockingDistance) / 100.0f;
 	}
 
 	void addShip(GameObject other){

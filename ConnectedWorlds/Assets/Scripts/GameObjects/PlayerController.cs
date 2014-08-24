@@ -41,6 +41,7 @@ public class PlayerController : CWMonoBehaviour {
 	// Docking control
 	private bool mDOCK_ENABLED = false;
 	private bool mCanDock = false;
+	private StationController mClosestStation;
 
 	private ThrustController[] mThrusters;
 
@@ -106,10 +107,11 @@ public class PlayerController : CWMonoBehaviour {
 			mDOCK_ENABLED = !mDOCK_ENABLED;
 		}
 		mDOCK_ENABLED = mDOCK_ENABLED && mCanDock;
-		DEBUGLABEL.text = "CanDock: " + mCanDock + " Docking: " + mDOCK_ENABLED;
+
+
 		toggleSASButton();
 		toggleTVCButton();
-		toggleDockButtin();
+		toggleDockButton();
 
 		switch (mState){
 			case PlayerState.Docking:
@@ -155,6 +157,12 @@ public class PlayerController : CWMonoBehaviour {
 		} else {
 			rigidbody2D.AddTorque(-(rigidbody2D.angularVelocity * rotScale * 0.1f));
 		}
+
+		if(mClosestStation != null){
+			mCanDock = (transform.position - mClosestStation.getDockPosition()).sqrMagnitude <= (mClosestStation.getDistanceSqr());
+
+			DEBUGLABEL.text = "CanDock: " + mCanDock + " Docking: " + mDOCK_ENABLED + "\nDistance: " + (transform.position - mClosestStation.getDockPosition()).sqrMagnitude + ", Required: " + (mClosestStation.getDistanceSqr());
+		}
 	}
 
 	#endregion
@@ -165,7 +173,7 @@ public class PlayerController : CWMonoBehaviour {
 		Debug.Log("Player entering perception zone for " + other.name);
 		if (other.GetComponent<CWMonoBehaviour>().checkFlags(ObjectFlags.STATION))
 		{
-			mCanDock = true;
+			mClosestStation = other.GetComponent<StationController>();
 		}
 	}
 
@@ -173,7 +181,7 @@ public class PlayerController : CWMonoBehaviour {
 		Debug.Log ("Player leaving perception zone for " + other.name);
 		if (mCanDock && other.GetComponent<CWMonoBehaviour>().checkFlags(ObjectFlags.STATION))
 		{
-			mCanDock = false;
+			mClosestStation = null;
 		}
 	}
 
@@ -197,8 +205,8 @@ public class PlayerController : CWMonoBehaviour {
 		GO_tcvLabel.GetComponent<UILabel>().color = (!mTempTVC_DISABLE && mTVC_ENABLED)?Color.white:kTVCDisableColor;
 	}
 
-	private void toggleDockButtin(){
-		GO_dockInside.GetComponent<UISprite>().color = (mDOCK_ENABLED)?kDOCKEnableColor:kDOCKDisableColor;
+	private void toggleDockButton(){
+		GO_dockInside.GetComponent<UISprite>().color = (mDOCK_ENABLED)?kDOCKEnableColor:(mCanDock)?kDOCKTempDisableColor:kDOCKDisableColor;
 		GO_dockLabel.GetComponent<UILabel>().color = (mDOCK_ENABLED)?Color.white:kDOCKDisableColor;
 	}
 
