@@ -13,6 +13,7 @@ namespace ConnectedWorldsEngine
 		public const uint TEAM_NEUTRAL = 32;
 		public const uint TEAM_PLAYER = 64;
 		public const uint TEAM_ENEMY = 128;
+		public const uint PERCEPTION_SHIP = 1024;
 	}
 }
 

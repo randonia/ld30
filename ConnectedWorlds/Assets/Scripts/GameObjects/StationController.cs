@@ -5,6 +5,7 @@ using ConnectedWorldsEngine;
 
 public class StationController : CWMonoBehaviour {
 
+
 	#region PREFABS
 	public Object GO_LRPREFAB;
 	#endregion
@@ -13,7 +14,11 @@ public class StationController : CWMonoBehaviour {
 
 	private List<GameObject> mNearbyShips;
 	private List<GameObject> mLineRenderers;
-	
+
+	void Awake(){
+		setFlags(ObjectFlags.STATION | ObjectFlags.TEAM_NEUTRAL);
+	}
+
 	// Use this for initialization
 	void Start () {
 		mNearbyShips = new List<GameObject>();
@@ -29,16 +34,27 @@ public class StationController : CWMonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		Debug.Log(other.gameObject.name + " entered trigger zone");
-		if (other.GetComponent<CWMonoBehaviour>().checkFlags(ObjectFlags.SHIP))
+		Debug.Log("Object " + other.gameObject.name + " entered station trigger zone");
+		CWMonoBehaviour cwmbOther = other.gameObject.GetComponent<CWMonoBehaviour>();
+		if (cwmbOther.checkFlags(ObjectFlags.SHIP))
 		{
 			addShip(other.gameObject);
+		}
+		if(cwmbOther.checkFlags(ObjectFlags.PERCEPTION_SHIP))
+		{
+			other.GetComponent<PerceptionTriggerController>().OnTriggerEnter2D(collider2D);
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other){
-		Debug.Log (other.gameObject.name + " leaving trigger zone");
-		removeShip(other.gameObject);
+		Debug.Log ("Object " + other.gameObject.name + " leaving station trigger zone");
+		CWMonoBehaviour cwmbOther = other.gameObject.GetComponent<CWMonoBehaviour>();
+		if(cwmbOther.checkFlags(ObjectFlags.SHIP)){
+			removeShip(other.gameObject);
+		}
+		if(cwmbOther.checkFlags(ObjectFlags.PERCEPTION_SHIP)){
+			other.GetComponent<PerceptionTriggerController>().OnTriggerExit2D(collider2D);
+		}
 	}
 
 	void addShip(GameObject other){
@@ -48,6 +64,7 @@ public class StationController : CWMonoBehaviour {
 
 	void removeShip(GameObject other){
 		int shipIndex = mNearbyShips.IndexOf(other);
+		Debug.Log (shipIndex);
 		mNearbyShips.RemoveAt(shipIndex);
 		GameObject objToDestroy = mLineRenderers[shipIndex];
 		mLineRenderers.RemoveAt(shipIndex);

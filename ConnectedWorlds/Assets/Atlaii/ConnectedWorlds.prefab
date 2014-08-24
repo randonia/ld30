@@ -42,7 +42,7 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: c2a1c45f3e1838c419408e954ef192e8, type: 2}
   mSprites:
   - name: hud_button_circle
-    x: 290
+    x: 258
     y: 496
     width: 16
     height: 16
@@ -55,7 +55,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hud_button_circle_inside
-    x: 307
+    x: 276
     y: 496
     width: 16
     height: 16
@@ -68,10 +68,23 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hud_button_square
-    x: 257
-    y: 480
-    width: 32
-    height: 32
+    x: 294
+    y: 504
+    width: 8
+    height: 8
+    borderLeft: 3
+    borderRight: 2
+    borderTop: 3
+    borderBottom: 2
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: hud_button_square_inside
+    x: 304
+    y: 504
+    width: 8
+    height: 8
     borderLeft: 0
     borderRight: 0
     borderTop: 0

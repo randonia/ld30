@@ -4,6 +4,11 @@ using ConnectedWorldsEngine;
 
 public class PlayerController : CWMonoBehaviour {
 
+	private enum PlayerState { 
+		Navigation,
+		Docking
+	}
+
 	#region Gameobject References
 
 	// The main camera
@@ -14,12 +19,16 @@ public class PlayerController : CWMonoBehaviour {
 	public GameObject GO_sasLabel;
 	public GameObject GO_tcvInside;
 	public GameObject GO_tcvLabel;
+	public GameObject GO_dockInside;
+	public GameObject GO_dockLabel;
 
 	public GameObject GO_DEBUG;
 
 	#endregion
 
 	#region Member variables
+
+	private PlayerState mState;
 
 	private UILabel DEBUGLABEL;
 
@@ -29,6 +38,9 @@ public class PlayerController : CWMonoBehaviour {
 	// Thrust vector control
 	private bool mTVC_ENABLED = false;
 	private bool mTempTVC_DISABLE = false;
+	// Docking control
+	private bool mDOCK_ENABLED = false;
+	private bool mCanDock = false;
 
 	private ThrustController[] mThrusters;
 
@@ -42,6 +54,10 @@ public class PlayerController : CWMonoBehaviour {
 	private Color kTVCTempDisableColor = Color.Lerp(Color.yellow, Color.grey, 0.5f);
 	private Color kTVCEnableColor = Color.yellow;
 
+	private Color kDOCKDisableColor = Color.Lerp(Color.blue, Color.black, 0.8f);
+	private Color kDOCKTempDisableColor = Color.Lerp(Color.blue, Color.grey, 0.5f);
+	private Color kDOCKEnableColor = Color.blue;
+
 	#endregion
 
 	#region Consts
@@ -52,6 +68,7 @@ public class PlayerController : CWMonoBehaviour {
 
 	void Awake() {
 		setFlags(ObjectFlags.SHIP | ObjectFlags.TEAM_PLAYER);
+		mState = PlayerState.Navigation;
 	}
 
 	// Use this for initialization
@@ -63,6 +80,10 @@ public class PlayerController : CWMonoBehaviour {
 		foreach(ThrustController thruster in mThrusters){
 			thruster.DisableThruster();
 		}
+
+		PerceptionTriggerController ptc = GetComponentInChildren<PerceptionTriggerController>();
+		ptc.doPerceptEnter = perceptionEnter;
+		ptc.doPerceptExit = perceptionExit;
 	}
 	
 	// Update is called once per frame
@@ -80,27 +101,26 @@ public class PlayerController : CWMonoBehaviour {
 		}
 		mTempTVC_DISABLE = (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D));
 
+		if(Input.GetKeyDown(KeyCode.G))
+		{
+			mDOCK_ENABLED = !mDOCK_ENABLED;
+		}
+		mDOCK_ENABLED = mDOCK_ENABLED && mCanDock;
+		DEBUGLABEL.text = "CanDock: " + mCanDock + " Docking: " + mDOCK_ENABLED;
 		toggleSASButton();
 		toggleTVCButton();
+		toggleDockButtin();
 
-		// Translation
-		float thrustScale = 5.0f;
-		if(!mTVC_ENABLED || mTempTVC_DISABLE){
-			Vector2 thrustVec = new Vector2(Input.GetAxis("thrust"), Input.GetAxis ("strafe"));
-			rigidbody2D.AddForce(transform.right * thrustVec.x * thrustScale);
-			rigidbody2D.AddForce(transform.up * thrustVec.y * thrustScale);
-		} else {
-			rigidbody2D.AddForce(-rigidbody2D.velocity * thrustScale * 0.2f);
-		}
-		DEBUGLABEL.text = rigidbody2D.velocity.ToString();
-
-		// Rotation
-		float rotScale = 0.35f;
-		if(!mSAS_ENABLED || mTempSAS_DISABLE){
-			float rotAmount = Input.GetAxis("rotate");
-			rigidbody2D.AddTorque(rotAmount * rotScale);
-		} else {
-				rigidbody2D.AddTorque(-(rigidbody2D.angularVelocity * rotScale * 0.1f));
+		switch (mState){
+			case PlayerState.Docking:
+				updateDocking();
+				break;
+			case PlayerState.Navigation:
+				updateNavigation();
+				break;
+			default:
+				Debug.Log("Uh oh");
+				break;
 		}
 
 		// Update the camera
@@ -110,10 +130,51 @@ public class PlayerController : CWMonoBehaviour {
 		DrawDebug();
 	}
 
+	#region Update methods
+
+	void updateDocking(){
+
+	}
+
+	void updateNavigation(){
+		// Translation
+		float thrustScale = 5.0f;
+		if(!mTVC_ENABLED || mTempTVC_DISABLE){
+			Vector2 thrustVec = new Vector2(Input.GetAxis("thrust"), Input.GetAxis ("strafe"));
+			rigidbody2D.AddForce(transform.right * thrustVec.x * thrustScale);
+			rigidbody2D.AddForce(transform.up * thrustVec.y * thrustScale);
+		} else {
+			rigidbody2D.AddForce(-rigidbody2D.velocity * thrustScale * 0.2f);
+		}
+
+		// Rotation
+		float rotScale = 0.35f;
+		if(!mSAS_ENABLED || mTempSAS_DISABLE){
+			float rotAmount = Input.GetAxis("rotate");
+			rigidbody2D.AddTorque(rotAmount * rotScale);
+		} else {
+			rigidbody2D.AddTorque(-(rigidbody2D.angularVelocity * rotScale * 0.1f));
+		}
+	}
+
+	#endregion
+
 	#region Collision Triggers
 
-	void OnTriggerEnter2D(Collider2D other){
-		Debug.Log("TRIGGER!" + other.gameObject.name);
+	void perceptionEnter(GameObject other){
+		Debug.Log("Player entering perception zone for " + other.name);
+		if (other.GetComponent<CWMonoBehaviour>().checkFlags(ObjectFlags.STATION))
+		{
+			mCanDock = true;
+		}
+	}
+
+	void perceptionExit(GameObject other){
+		Debug.Log ("Player leaving perception zone for " + other.name);
+		if (mCanDock && other.GetComponent<CWMonoBehaviour>().checkFlags(ObjectFlags.STATION))
+		{
+			mCanDock = false;
+		}
 	}
 
 	#endregion
@@ -134,6 +195,11 @@ public class PlayerController : CWMonoBehaviour {
 	private void toggleTVCButton(){
 		GO_tcvInside.GetComponent<UISprite>().color = (!mTempTVC_DISABLE && mTVC_ENABLED)?kTVCEnableColor:(mTempTVC_DISABLE && mTVC_ENABLED)?kTVCTempDisableColor:kTVCDisableColor;
 		GO_tcvLabel.GetComponent<UILabel>().color = (!mTempTVC_DISABLE && mTVC_ENABLED)?Color.white:kTVCDisableColor;
+	}
+
+	private void toggleDockButtin(){
+		GO_dockInside.GetComponent<UISprite>().color = (mDOCK_ENABLED)?kDOCKEnableColor:kDOCKDisableColor;
+		GO_dockLabel.GetComponent<UILabel>().color = (mDOCK_ENABLED)?Color.white:kDOCKDisableColor;
 	}
 
 	#endregion
