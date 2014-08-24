@@ -10,6 +10,7 @@ public class DroneFighterController : CWMonoBehaviour {
 	}
 
 	public GameObject PREFAB_BULLET;
+	public GameObject PREFAB_EXPLOSION;
 	public GameObject GO_Player;
 
 	public Vector2[] mGunPositions;
@@ -28,6 +29,8 @@ public class DroneFighterController : CWMonoBehaviour {
 	private float mPathTime = 0.0f;
 	public float mPathSpeed = 1.0f;
 	public float mRadius = 8.0f;
+	public float mLifeSpan = 15.0f;
+	public float mBirthTime;
 
 	// Properties
 	private DroneState mState;
@@ -41,6 +44,8 @@ public class DroneFighterController : CWMonoBehaviour {
 		setFlags(ObjectFlags.DRONE | ObjectFlags.TEAM_PLAYER);
 		mPathTime = Random.Range(0.0f, Mathf.PI * 2.0f);
 		mPathSpeed = (Random.Range(0.9f, 1.1f) * ((Random.value < 0.5f)?-1:1));
+		GO_Player = (GameObject)GameObject.Find("Player");
+		mBirthTime = Time.time;
 	}
 
 	// Use this for initialization
@@ -56,6 +61,12 @@ public class DroneFighterController : CWMonoBehaviour {
 		{
 			FireAt(mCurrentTarget);
 			mLastFire = Time.time;
+		}
+		if(Time.time > mBirthTime + mLifeSpan){
+			GameObject splosion = (GameObject)GameObject.Instantiate(PREFAB_EXPLOSION, transform.position, transform.rotation);
+			splosion.transform.localScale = new Vector2(0.2f, 0.2f);
+			GameObject.Destroy(splosion, 8);
+			GameObject.Destroy(gameObject);
 		}
 	}
 
@@ -79,6 +90,7 @@ public class DroneFighterController : CWMonoBehaviour {
 		proj.GetComponent<Projectile>().Initialize((Vector2)dir, bulletVelocity, 5.0f, ObjectFlags.TEAM_PLAYER, 0, rot);
 		Debug.DrawRay(proj.transform.position, dir * 5.0f, Color.red);
 		Physics2D.IgnoreCollision(proj.collider2D, GO_Player.collider2D);
+		Physics2D.IgnoreCollision(proj.collider2D, collider2D);
 	}
 
 	void perceptionEnter(GameObject other){

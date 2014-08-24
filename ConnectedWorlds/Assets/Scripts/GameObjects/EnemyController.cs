@@ -44,7 +44,7 @@
 		public float mMaxSpeed = 10.0f;
 
 		// Combat handling
-		private GameObject mCurrentTarget;
+		public GameObject mCurrentTarget;
 		[Tooltip("Maximum distance to fire")]
 		public float mTargetMaxRange = 10.0f;
 		[Tooltip("The delay in seconds between shots")]
