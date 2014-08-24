@@ -38,13 +38,47 @@ public class CWMonoBehaviour : MonoBehaviour{
 
 public class GameController : MonoBehaviour {
 
+	private enum GameState{
+		Menu,
+		Playing,
+		Paused
+	}
+
+	public bool isPaused {get{return mState == GameState.Paused;}}
+
+	public GameObject GO_Player;
+	private PlayerController mPlayer;
+
+	private GameState mState;
+
 	// Use this for initialization
 	void Start () {
-	
+		mState = GameState.Playing;
+		mPlayer = GO_Player.GetComponent<PlayerController>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(Input.GetKeyDown(KeyCode.P)){
+			mState = (mState == GameState.Paused)?GameState.Playing:GameState.Paused;
+		}
+		switch(mState){
+			case GameState.Menu:
+				break;
+			case GameState.Playing:
+				Time.timeScale = 1.0f;
+				if (mPlayer){
+
+				}
+				break;
+			case GameState.Paused:
+				Time.timeScale = 0.0f;
+				break;
+		}
+	}
+
+	public void UnPauseButtonClick(){
+		Debug.Log("Button Pressed");
+		mState = GameState.Playing;
 	}
 }
