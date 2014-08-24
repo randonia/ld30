@@ -16,8 +16,6 @@ public class PlayerController : CWMonoBehaviour {
 	public GameObject GO_mainCamera;
 
 	// UI Components
-	public GameObject GO_sasInside;
-	public GameObject GO_sasLabel;
 	public GameObject GO_tcvInside;
 	public GameObject GO_tcvLabel;
 	public GameObject GO_dockInside;
@@ -33,9 +31,6 @@ public class PlayerController : CWMonoBehaviour {
 
 	private UILabel DEBUGLABEL;
 
-	// Rotational control/auto
-	private bool mSAS_ENABLED = false;
-	private bool mTempSAS_DISABLE = false;
 	// Thrust vector control
 	private bool mTVC_ENABLED = false;
 	private bool mTempTVC_DISABLE = false;
@@ -48,10 +43,6 @@ public class PlayerController : CWMonoBehaviour {
 
 
 	// Colors
-	private Color kSASDisableColor = Color.Lerp(Color.green, Color.black, 0.8f);
-	private Color kSASTempDisableColor = Color.Lerp(Color.green, Color.grey, 0.5f);
-	private Color kSASEnableColor = Color.green;
-
 	private Color kTVCDisableColor = Color.Lerp(Color.yellow, Color.black, 0.8f);
 	private Color kTVCTempDisableColor = Color.Lerp(Color.yellow, Color.grey, 0.5f);
 	private Color kTVCEnableColor = Color.yellow;
@@ -92,11 +83,6 @@ public class PlayerController : CWMonoBehaviour {
 	void Update () {
 
 		// Controls
-		if(Input.GetKeyDown(KeyCode.R))
-		{
-			mSAS_ENABLED = !mSAS_ENABLED;
-		}
-		mTempSAS_DISABLE = (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E));
 		if(Input.GetKeyDown(KeyCode.T))
 		{
 			mTVC_ENABLED = !mTVC_ENABLED;
@@ -118,8 +104,6 @@ public class PlayerController : CWMonoBehaviour {
 			rigidbody2D.velocity = Vector2.zero;
 		}
 
-
-		toggleSASButton();
 		toggleTVCButton();
 		toggleDockButton();
 
@@ -210,11 +194,6 @@ public class PlayerController : CWMonoBehaviour {
 	}
 
 	#region UI Toggles
-
-	private void toggleSASButton(){
-		GO_sasInside.GetComponent<UISprite>().color = (!mTempSAS_DISABLE && mSAS_ENABLED)?kSASEnableColor:(mTempSAS_DISABLE && mSAS_ENABLED)?kSASTempDisableColor:kSASDisableColor;
-		GO_sasLabel.GetComponent<UILabel>().color = (!mTempSAS_DISABLE && mSAS_ENABLED)?Color.white:kSASDisableColor;
-	}
 
 	private void toggleTVCButton(){
 		GO_tcvInside.GetComponent<UISprite>().color = (!mTempTVC_DISABLE && mTVC_ENABLED)?kTVCEnableColor:(mTempTVC_DISABLE && mTVC_ENABLED)?kTVCTempDisableColor:kTVCDisableColor;
