@@ -12,6 +12,7 @@
 		}
 
 		public GameObject PREFAB_PROJECTILE;
+		public GameObject PREFAB_EXPLOSION;
 
 		#region Editor-designed variables
 
@@ -80,10 +81,13 @@
 				case EnemyState.DIEING:
 					break;
 			}
-			if(mHealth <= 0.0f && mAlive){
+			if(mHealth <= 0.0f && mState != EnemyState.DIEING){
 				Debug.Log("This enemy is dead " + gameObject.name);
 				mAlive = false;
 				mState = EnemyState.DIEING;
+				GameObject splosion = (GameObject)GameObject.Instantiate(PREFAB_EXPLOSION, transform.position, transform.rotation);
+				GameObject.Destroy(gameObject);
+				GameObject.Destroy(splosion, 10);
 			}
 			if(mLastPosition.x - transform.position.x != 0){
 				mRightFacing = mLastPosition.x > transform.position.x;

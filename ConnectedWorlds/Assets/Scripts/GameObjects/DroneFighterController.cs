@@ -39,6 +39,8 @@ public class DroneFighterController : CWMonoBehaviour {
 
 	void Awake(){
 		setFlags(ObjectFlags.DRONE | ObjectFlags.TEAM_PLAYER);
+		mPathTime = Random.Range(0.0f, Mathf.PI * 2.0f);
+		mPathSpeed = (Random.Range(0.9f, 1.1f) * ((Random.value < 0.5f)?-1:1));
 	}
 
 	// Use this for initialization
