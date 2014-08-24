@@ -133,7 +133,7 @@ public class PlayerController : CWMonoBehaviour {
 				"\nDistance: " + (transform.position - mClosestStation.getDockPosition()).sqrMagnitude + 
 					", Required: " + (mClosestStation.getDistanceSqr()) +
 					"\nSpeed: " + rigidbody2D.velocity.sqrMagnitude +
-					"\nCalculating docked: " + (mClosestStation.getDockPosition() - transform.position).sqrMagnitude;
+					"\nTime:" + Time.time;
 		}
 		DrawDebug();
 	}

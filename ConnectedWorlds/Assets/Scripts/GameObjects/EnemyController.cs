@@ -11,6 +11,8 @@
 			DIEING
 		}
 
+		public GameObject PREFAB_PROJECTILE;
+
 		#region Editor-designed variables
 
 		public Vector2 gunOffset;
@@ -42,7 +44,11 @@
 
 		// Combat handling
 		private GameObject mCurrentTarget;
-		private float mTargetRange = 10.0f;
+		[Tooltip("Maximum distance to fire")]
+		public float mTargetMaxRange = 10.0f;
+		[Tooltip("The delay in seconds between shots")]
+		public float mFireRate = 1.0f;
+		private float mLastShot = -1.0f;
 
 		#endregion
 
@@ -110,11 +116,32 @@
 			// Aim specific number of units short of the target
 			Vector2 shortPosition = ((Vector2)mCurrentTarget.transform.position + dirFromTarget * 5.0f);
 			moveToPoint(shortPosition);
+
+			if(mLastShot + mFireRate < Time.time){
+				FireAt(mCurrentTarget);
+				mLastShot = Time.time;
+			}
+
 			Debug.DrawLine(transform.position, shortPosition, Color.green);
 			Debug.DrawLine(gunPosition, mCurrentTarget.transform.position, Color.red);
 		}
 
 		#endregion
+
+		void FireAt(GameObject target){
+			float bulletVelocity = 150.0f;
+			Vector3 randomLead = Vector3.zero;
+			float distance = (target.transform.position - transform.position).magnitude;
+
+			Rigidbody2D targetRB2D = target.GetComponent<Rigidbody2D>();
+			if(targetRB2D != null){
+				randomLead = targetRB2D.velocity.normalized;
+			}
+			Vector3 dir = ((target.transform.position + randomLead) - transform.position) / distance;
+			GameObject proj = (GameObject)GameObject.Instantiate(PREFAB_PROJECTILE, gunPosition, Quaternion.identity);
+			float rot = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+			proj.GetComponent<Projectile>().Initialize((Vector2)dir, bulletVelocity, 5.0f, ObjectFlags.TEAM_ENEMY, 0, rot);
+		}
 
 		void perceptionEnter(GameObject other){
 			Debug.Log("Perception enter for the Enemy");
