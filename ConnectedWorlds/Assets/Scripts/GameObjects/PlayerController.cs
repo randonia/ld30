@@ -35,6 +35,8 @@ public class PlayerController : CWMonoBehaviour {
 	public float VelocityFloatForCamera {get{float mag = rigidbody2D.velocity.magnitude; return Mathf.Min(Mathf.Max(7.5f, Mathf.Pow(mag, 0.5f) + 3), 15.0f);}}
 	private PlayerState mState;
 
+	public bool mShowToolTip = false;
+
 	public bool mShowBuyMenu = true;
 
 	public bool CanBuyDrones {get{return mCredits >= 25;}}
@@ -249,6 +251,10 @@ public class PlayerController : CWMonoBehaviour {
 
 	public void OnBuyDronesClick(){
 		Debug.Log("Drones clicked!");
+	}
+
+	public void toggleToolTip(){
+		mShowToolTip = !mShowToolTip;
 	}
 	#endregion
 }
