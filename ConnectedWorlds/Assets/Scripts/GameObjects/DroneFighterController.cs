@@ -30,7 +30,7 @@ public class DroneFighterController : CWMonoBehaviour {
 	public float mRadius = 8.0f;
 
 	// Properties
-	private DroneState mState = DroneState.Idle;
+	private DroneState mState;
 
 	// Combat stuff
 	public float mFireRate;
@@ -89,7 +89,6 @@ public class DroneFighterController : CWMonoBehaviour {
 		if(cwmb != null){
 			if(cwmb.checkFlags(ObjectFlags.TEAM_ENEMY)){
 				mCurrentTarget = other;
-				mState = DroneState.Attacking;
 			}
 		}
 	}
@@ -99,7 +98,6 @@ public class DroneFighterController : CWMonoBehaviour {
 		if(cwmb != null){
 			if(cwmb.checkFlags(ObjectFlags.TEAM_ENEMY)){
 				Debug.Log("Drone disengaged");
-				mState = DroneState.Idle;
 			}
 		}
 	}

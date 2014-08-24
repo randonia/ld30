@@ -21,6 +21,12 @@ namespace ConnectedWorldsEngine
 
 public class CWMonoBehaviour : MonoBehaviour{
 	protected uint mObjectFlags;
+	protected float mHealth = 1.0f;
+	protected int mHitPointsVisible = 100;
+
+	public void takeDamage(float dam){
+
+	}
 
 	public bool checkFlags(uint flagsToCheck){
 		return (mObjectFlags & flagsToCheck) == flagsToCheck;
@@ -33,6 +39,7 @@ public class CWMonoBehaviour : MonoBehaviour{
 	public void clearFlags(uint flagsToClear){
 		mObjectFlags = (flagsToClear ^ uint.MaxValue) & mObjectFlags;
 	}
+
 
 }
 
