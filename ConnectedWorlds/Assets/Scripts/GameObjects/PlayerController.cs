@@ -21,8 +21,6 @@ public class PlayerController : CWMonoBehaviour {
 	public GameObject GO_dockInside;
 	public GameObject GO_dockLabel;
 
-	public GameObject GO_DEBUG;
-
 	#endregion
 
 	#region Member variables
@@ -72,9 +70,6 @@ public class PlayerController : CWMonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		DEBUGLABEL = GO_DEBUG.GetComponent<UILabel>();
-		DEBUGLABEL.text = "";
-
 		mThrusters = GetComponentsInChildren<ThrustController>();
 		foreach(ThrustController thruster in mThrusters){
 			thruster.DisableThruster();
@@ -130,13 +125,6 @@ public class PlayerController : CWMonoBehaviour {
 		GO_mainCamera.transform.position = Vector3.zero;
 		GO_mainCamera.transform.Translate(transform.position.x, transform.position.y, kCamZ);
 
-		if(mClosestStation != null){
-			DEBUGLABEL.text = "State: " + mState +
-				"\nDistance: " + (transform.position - mClosestStation.getDockPosition()).sqrMagnitude + 
-					", Required: " + (mClosestStation.getDistanceSqr()) +
-					"\nSpeed: " + rigidbody2D.velocity.sqrMagnitude +
-					"\nTime:" + Time.time;
-		}
 		DrawDebug();
 	}
 

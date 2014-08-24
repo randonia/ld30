@@ -41,8 +41,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: c2a1c45f3e1838c419408e954ef192e8, type: 2}
   mSprites:
-  - name: hud_button_circle
+  - name: bg_star_distant_anim
     x: 258
+    y: 496
+    width: 137
+    height: 16
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 4
+    paddingTop: 0
+    paddingBottom: 0
+  - name: hud_button_circle
+    x: 445
     y: 496
     width: 16
     height: 16
@@ -55,7 +68,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hud_button_circle_inside
-    x: 276
+    x: 463
     y: 496
     width: 16
     height: 16
@@ -68,7 +81,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hud_button_square
-    x: 294
+    x: 481
     y: 504
     width: 8
     height: 8
@@ -81,7 +94,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hud_button_square_inside
-    x: 304
+    x: 491
     y: 504
     width: 8
     height: 8
@@ -106,6 +119,32 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: ship_player
+    x: 397
+    y: 498
+    width: 46
+    height: 14
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 1
+    paddingRight: 1
+    paddingTop: 1
+    paddingBottom: 1
+  - name: station_medium
+    x: 0
+    y: 229
+    width: 507
+    height: 25
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 3
+    paddingTop: 6
+    paddingBottom: 1
   mPixelSize: 1
   mReplacement: {fileID: 0}
   mCoordinates: 0
