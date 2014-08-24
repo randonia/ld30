@@ -46,6 +46,7 @@ public class PlayerController : CWMonoBehaviour {
 
 
 	public float mFuelLevel = 1.0f;
+	public bool CanBuyFuel {get{return mCredits >= 15;}}
 	public bool CanBuyDrones {get{return mCredits >= 25;}}
 	public int NumDrones {get{return mDroneCount;}}
 	public int mDroneCount;
@@ -312,10 +313,16 @@ public class PlayerController : CWMonoBehaviour {
 	}
 
 	public void OnBuyDronesClick(){
-		Debug.Log("Drones clicked!");
 		if(mCredits >= 25){
 			mCredits -= 25;
 			mDroneCount += 10;
+		}
+	}
+
+	public void OnBuyFuelClick(){
+		if(mCredits >= 15){
+			mCredits -= 15;
+			mFuelLevel += 0.05f;
 		}
 	}
 
