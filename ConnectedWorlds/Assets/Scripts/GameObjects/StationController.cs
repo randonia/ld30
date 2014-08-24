@@ -8,6 +8,7 @@ public class StationController : CWMonoBehaviour {
 
 	#region PREFABS
 	public Object GO_LRPREFAB;
+	public GameObject GO_RowPrefab;
 	#endregion
 
 	// The offset of the actual "Dock Point" where a player can dock
@@ -15,9 +16,33 @@ public class StationController : CWMonoBehaviour {
 	[Tooltip("Number of meters required to be within to start the dock. 1 Unity Unit == 10 meters")]
 	public int mAutoDockingDistance = 10;
 
+	public Inventory mInventory;
 
 	private List<GameObject> mNearbyShips;
 	private List<GameObject> mLineRenderers;
+
+	public UIAtlas mMyAtlas;
+
+	// Sets up the shop panel with this Station's inventory!
+	public void setUpShopPanel(){
+		GameObject scrollView = (GameObject)GameObject.Find("inventory_scroll_view");
+		GameObject invGrid = (GameObject)GameObject.Find("inventory_grid");
+		foreach(Inventory.Row row in mInventory.stockPile){
+			Debug.Log("Loading up the item " + row.itemTitle);
+			GameObject newPrefab = NGUITools.AddChild(invGrid, GO_RowPrefab);
+			newPrefab.transform.Find("title").GetComponent<UILabel>().text = row.itemTitle;
+			newPrefab.transform.Find("icon_back/item_icon").GetComponent<UISprite>().spriteName = row.iconName;
+			newPrefab.transform.Find("quantity").GetComponent<UILabel>().text = row.quantity.ToString();
+			newPrefab.transform.Find("price").GetComponent<UILabel>().text = row.creditsEach.ToString();
+			//newPrefab.transform.Find("buy_button").GetComponent<UIButton>().Click = new RoutedEventHandler(buyInvItem);
+
+		}
+		invGrid.GetComponent<UIGrid>().Reposition();
+	}
+
+	public void buyInvItem(){
+		Debug.Log("OMG IT WORKED?");
+	}
 
 	void Awake(){
 		setFlags(ObjectFlags.STATION | ObjectFlags.TEAM_NEUTRAL);
@@ -25,6 +50,11 @@ public class StationController : CWMonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		mInventory = new Inventory();
+		mInventory.AddItem("test", "hud_indicator", 42, 32);
+		mInventory.AddItem("test2", "hud_indicator", 64, 23);
+		mInventory.AddItem("test3", "hud_button_square_inside", 64, 23);
+
 		mNearbyShips = new List<GameObject>();
 		mLineRenderers = new List<GameObject>();
 	}
@@ -38,7 +68,6 @@ public class StationController : CWMonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		Debug.Log("Object " + other.gameObject.name + " entered station trigger zone");
 		CWMonoBehaviour cwmbOther = other.gameObject.GetComponent<CWMonoBehaviour>();
 		if (cwmbOther.checkFlags(ObjectFlags.PLAYER))
 		{

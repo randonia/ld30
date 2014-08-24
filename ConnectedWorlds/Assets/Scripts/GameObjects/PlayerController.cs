@@ -35,6 +35,11 @@ public class PlayerController : CWMonoBehaviour {
 	public float VelocityFloatForCamera {get{float mag = rigidbody2D.velocity.magnitude; return Mathf.Min(Mathf.Max(7.5f, Mathf.Pow(mag, 0.5f) + 3), 15.0f);}}
 	private PlayerState mState;
 
+	public bool mShowBuyMenu = true;
+
+	public bool CanBuyDrones {get{return mCredits >= 25;}}
+	public int NumDrones {get{return mDroneCount;}}
+	private int mDroneCount;
 	public float healthPercent {get{return mHealth;}}
 	private UILabel DEBUGLABEL;
 	public int mCredits = 100;
@@ -137,6 +142,9 @@ public class PlayerController : CWMonoBehaviour {
 		GO_mainCamera.transform.position = Vector3.zero;
 		GO_mainCamera.transform.Translate(transform.position.x, transform.position.y, kCamZ);
 
+
+		mShowBuyMenu = mState == PlayerState.Docked;
+
 		DrawDebug();
 	}
 
@@ -176,6 +184,7 @@ public class PlayerController : CWMonoBehaviour {
 		rigidbody2D.MovePosition(transform.position + (mClosestStation.getDockPosition() - transform.position) * Time.deltaTime);
 		if ((mClosestStation.getDockPosition() - transform.position).sqrMagnitude < 0.01f){
 			mState = PlayerState.Docked;
+			mClosestStation.GetComponent<StationController>().setUpShopPanel();
 		}
 	}
 
@@ -205,7 +214,6 @@ public class PlayerController : CWMonoBehaviour {
 	#region Collision Triggers
 
 	void perceptionEnter(GameObject other){
-		Debug.Log("Player entering perception zone for " + other.name);
 		if (other.GetComponent<CWMonoBehaviour>().checkFlags(ObjectFlags.STATION))
 		{
 			mClosestStation = other.GetComponent<StationController>();
@@ -213,7 +221,6 @@ public class PlayerController : CWMonoBehaviour {
 	}
 
 	void perceptionExit(GameObject other){
-		Debug.Log ("Player leaving perception zone for " + other.name);
 		if (mCanDock && other.GetComponent<CWMonoBehaviour>().checkFlags(ObjectFlags.STATION))
 		{
 			mClosestStation = null;
@@ -240,5 +247,8 @@ public class PlayerController : CWMonoBehaviour {
 		GO_dockLabel.GetComponent<UILabel>().color = (mDOCK_ENABLED)?Color.white:kDOCKDisableColor;
 	}
 
+	public void OnBuyDronesClick(){
+		Debug.Log("Drones clicked!");
+	}
 	#endregion
 }

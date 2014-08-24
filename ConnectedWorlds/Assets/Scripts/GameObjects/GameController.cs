@@ -87,7 +87,6 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void UnPauseButtonClick(){
-		Debug.Log("Button Pressed");
 		mState = GameState.Playing;
 	}
 }

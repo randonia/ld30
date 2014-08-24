@@ -82,7 +82,6 @@
 					break;
 			}
 			if(mHealth <= 0.0f && mState != EnemyState.DIEING){
-				Debug.Log("This enemy is dead " + gameObject.name);
 				mAlive = false;
 				mState = EnemyState.DIEING;
 				GameObject splosion = (GameObject)GameObject.Instantiate(PREFAB_EXPLOSION, transform.position, transform.rotation);
@@ -154,7 +153,6 @@
 		}
 
 		void perceptionEnter(GameObject other){
-			Debug.Log("Perception enter for the Enemy: " +  other.name);
 			CWMonoBehaviour cwmb = other.GetComponent<CWMonoBehaviour>();
 			if(cwmb != null){
 				if(cwmb.checkFlags(ObjectFlags.PLAYER)){
@@ -168,7 +166,6 @@
 			CWMonoBehaviour cwmb = other.GetComponent<CWMonoBehaviour>();
 			if(cwmb != null){
 				if(cwmb.checkFlags(ObjectFlags.PLAYER)){
-					Debug.Log("Lost player. Going into hunt mode");
 					mState = EnemyState.HUNTING;
 				}
 			}

@@ -29,7 +29,6 @@ public class AsteroidController : CWMonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D other){
-		Debug.Log("I collided with: " + other.gameObject.name);
 		CWMonoBehaviour cwmb = other.gameObject.GetComponent<CWMonoBehaviour>();
 		if(cwmb != null){
 			if(cwmb.checkFlags(ObjectFlags.PROJECTILE)){

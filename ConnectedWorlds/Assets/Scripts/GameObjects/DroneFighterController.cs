@@ -97,7 +97,6 @@ public class DroneFighterController : CWMonoBehaviour {
 		CWMonoBehaviour cwmb = other.GetComponent<CWMonoBehaviour>();
 		if(cwmb != null){
 			if(cwmb.checkFlags(ObjectFlags.TEAM_ENEMY | ObjectFlags.SHIP)){
-				Debug.Log("Drone engaged with " + other.name);
 				mCurrentTarget = other;
 			}
 		}
@@ -107,7 +106,6 @@ public class DroneFighterController : CWMonoBehaviour {
 		CWMonoBehaviour cwmb = other.GetComponent<CWMonoBehaviour>();
 		if(cwmb != null){
 			if(cwmb.checkFlags(ObjectFlags.TEAM_ENEMY | ObjectFlags.SHIP)){
-				Debug.Log("Drone disengaged");
 				mCurrentTarget = null;
 			}
 		}
