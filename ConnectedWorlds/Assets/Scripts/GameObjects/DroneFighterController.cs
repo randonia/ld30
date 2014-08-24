@@ -28,7 +28,7 @@ public class DroneFighterController : CWMonoBehaviour {
 	// The "path" to follow
 	private float mPathTime = 0.0f;
 	public float mPathSpeed = 1.0f;
-	public float mRadius = 8.0f;
+	public float mRadius = 0.0f;
 	public float mLifeSpan = 15.0f;
 	public float mBirthTime;
 
@@ -43,7 +43,8 @@ public class DroneFighterController : CWMonoBehaviour {
 	void Awake(){
 		setFlags(ObjectFlags.DRONE | ObjectFlags.TEAM_PLAYER);
 		mPathTime = Random.Range(0.0f, Mathf.PI * 2.0f);
-		mPathSpeed = (Random.Range(0.9f, 1.1f) * ((Random.value < 0.5f)?-1:1));
+		mPathSpeed = (Random.Range(0.8f, 1.3f) * ((Random.value < 0.5f)?-1:1));
+		mRadius = Random.Range(4.0f, 12.0f);
 		GO_Player = (GameObject)GameObject.Find("Player");
 		mBirthTime = Time.time;
 	}

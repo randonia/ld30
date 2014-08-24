@@ -23,6 +23,10 @@ public class PlayerController : CWMonoBehaviour {
 	public GameObject GO_dockInside;
 	public GameObject GO_dockLabel;
 
+	public GameObject PREFAB_DRONE;
+	public GameObject PREFAB_EXPLOSION;
+
+
 	public GameObject GO_indicator;
 	public bool shouldIndicate {get{return mDestinationStation != null && !mCanDock && !mDOCK_ENABLED;}}
 	public GameObject mDestinationStation;
@@ -44,7 +48,7 @@ public class PlayerController : CWMonoBehaviour {
 	public float mFuelLevel = 1.0f;
 	public bool CanBuyDrones {get{return mCredits >= 25;}}
 	public int NumDrones {get{return mDroneCount;}}
-	private int mDroneCount;
+	public int mDroneCount;
 	public float healthPercent {get{return mHealth;}}
 	private UILabel DEBUGLABEL;
 	public int mCredits = 100;
@@ -108,6 +112,10 @@ public class PlayerController : CWMonoBehaviour {
 			return;
 		}
 		// Controls
+		if(Input.GetKeyDown(KeyCode.F)){
+			deployDrone();
+		}
+
 		if(Input.GetKeyDown(KeyCode.T))
 		{
 			mTVC_ENABLED = !mTVC_ENABLED;
@@ -171,6 +179,9 @@ public class PlayerController : CWMonoBehaviour {
 			case PlayerState.FuelBoned:
 				updateFuelBoned();
 				break;
+			case PlayerState.Dead:
+				updateDead();
+				break;
 			default:
 				break;
 		}
@@ -180,6 +191,18 @@ public class PlayerController : CWMonoBehaviour {
 
 	void updateFuelBoned(){
 
+	}
+
+	void updateDead(){
+		if(PREFAB_EXPLOSION != null){
+			GameObject.Instantiate(PREFAB_EXPLOSION, transform.position + transform.up * 2, transform.rotation);
+			GameObject.Instantiate(PREFAB_EXPLOSION, transform.position + transform.up * -2, transform.rotation);
+			GameObject.Instantiate(PREFAB_EXPLOSION, transform.position + transform.right * 3, transform.rotation);
+			GameObject.Instantiate(PREFAB_EXPLOSION, transform.position + transform.right * -2, transform.rotation);
+			gameObject.rigidbody2D.velocity = Vector2.zero;
+			GameObject.Destroy(gameObject, 2.0f);
+			PREFAB_EXPLOSION = null;
+		}
 	}
 
 	void updateDocked(){
@@ -282,6 +305,13 @@ public class PlayerController : CWMonoBehaviour {
 			return true;
 		}
 		return false;
+	}
+
+	void deployDrone(){
+		if(NumDrones > 0){
+			GameObject newDrone = (GameObject)GameObject.Instantiate(PREFAB_DRONE);
+			mDroneCount--;
+		}
 	}
 
 	public void toggleToolTip(){
