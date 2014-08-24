@@ -86,6 +86,10 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+	public void restartGame(){
+		Application.LoadLevel("sandbox_scene");
+	}
+
 	public void UnPauseButtonClick(){
 		mState = GameState.Playing;
 	}

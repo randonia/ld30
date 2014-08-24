@@ -190,6 +190,14 @@ public class PlayerController : CWMonoBehaviour {
 	#region Update methods
 
 	void updateFuelBoned(){
+		if(!mShowToolTip){
+			mShowToolTip = true;
+			GameObject.Find("info_label").GetComponent<UILabel>().text = "You have run out of fuel. Now you will drift through space until someone blows you up. CLick Okay to restart";
+			GameController mGameController = GameObject.Find("GameController").GetComponent<GameController>();
+			EventDelegate.Set(GameObject.Find("tooltip_okay_btn").GetComponent<UIButton>().onClick, mGameController.restartGame);
+			rigidbody2D.fixedAngle = false;
+			rigidbody2D.AddTorque(10.0f);
+		}
 
 	}
 
@@ -202,6 +210,11 @@ public class PlayerController : CWMonoBehaviour {
 			gameObject.rigidbody2D.velocity = Vector2.zero;
 			GameObject.Destroy(gameObject, 2.0f);
 			PREFAB_EXPLOSION = null;
+			mShowToolTip = true;
+			GameObject.Find("info_label").GetComponent<UILabel>().text = "You have lost. Press okay to restart the game";
+			GameController mGameController = GameObject.Find("GameController").GetComponent<GameController>();
+			EventDelegate.Set(GameObject.Find("tooltip_okay_btn").GetComponent<UIButton>().onClick, mGameController.restartGame);
+
 		}
 	}
 
@@ -215,6 +228,10 @@ public class PlayerController : CWMonoBehaviour {
 					mHealCredits = 10.0f;
 				}
 			}
+		}
+		if(mCurrentItem.quantity > 0){
+			mCredits += (mCurrentItem.quantity / 10) * mCurrentItem.credits;
+			mCurrentItem.quantity = 0;
 		}
 	}
 
@@ -294,6 +311,10 @@ public class PlayerController : CWMonoBehaviour {
 
 	public void OnBuyDronesClick(){
 		Debug.Log("Drones clicked!");
+		if(mCredits >= 25){
+			mCredits -= 25;
+			mDroneCount += 10;
+		}
 	}
 
 	public bool BuyItem(Inventory.Row itemRow){

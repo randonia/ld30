@@ -15,7 +15,7 @@ GameObject:
   - 120: {fileID: 12000000}
   m_Layer: 0
   m_Name: station_01_01
-  m_TagString: Untagged
+  m_TagString: Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,9 +77,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb598011ad3e414c8da6ce36ee8dc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GO_Player: {fileID: 0}
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
+  GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
   mAutoDockingDistance: 6
+  mMyAtlas: {fileID: 0}
 --- !u!120 &12000000
 LineRenderer:
   m_ObjectHideFlags: 1
