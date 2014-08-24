@@ -6,7 +6,8 @@ public class PlayerController : CWMonoBehaviour {
 
 	private enum PlayerState { 
 		Navigation,
-		Docking
+		Docking,
+		Docked
 	}
 
 	#region Gameobject References
@@ -105,8 +106,17 @@ public class PlayerController : CWMonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.G))
 		{
 			mDOCK_ENABLED = !mDOCK_ENABLED;
+			if(mState == PlayerState.Docked || mState == PlayerState.Docking){
+				mState = PlayerState.Navigation;
+			}
 		}
-		mDOCK_ENABLED = mDOCK_ENABLED && mCanDock;
+
+		mDOCK_ENABLED = mDOCK_ENABLED && mCanDock && rigidbody2D.velocity.sqrMagnitude < 0.25f;
+		// Move to docking state
+		if(mDOCK_ENABLED) {
+			mState = PlayerState.Docking;
+			rigidbody2D.velocity = Vector2.zero;
+		}
 
 
 		toggleSASButton();
@@ -120,6 +130,9 @@ public class PlayerController : CWMonoBehaviour {
 			case PlayerState.Navigation:
 				updateNavigation();
 				break;
+			case PlayerState.Docked:
+				updateDocked();
+				break;
 			default:
 				Debug.Log("Uh oh");
 				break;
@@ -129,13 +142,28 @@ public class PlayerController : CWMonoBehaviour {
 		GO_mainCamera.transform.position = Vector3.zero;
 		GO_mainCamera.transform.Translate(transform.position.x, transform.position.y, kCamZ);
 
+		if(mClosestStation != null){
+			DEBUGLABEL.text = "CanDock: " + mCanDock + " Docking: " + mDOCK_ENABLED + 
+				"\nState: " + mState +
+				"\nDistance: " + (transform.position - mClosestStation.getDockPosition()).sqrMagnitude + 
+					", Required: " + (mClosestStation.getDistanceSqr()) +
+					"\nSpeed: " + rigidbody2D.velocity.sqrMagnitude;
+		}
 		DrawDebug();
 	}
 
 	#region Update methods
 
-	void updateDocking(){
+	void updateDocked(){
 
+	}
+
+	void updateDocking(){
+		// Move towards the point
+		rigidbody2D.MovePosition(transform.position + (mClosestStation.getDockPosition() - transform.position) * Time.deltaTime);
+		if ((mClosestStation.getDockPosition() - transform.position).sqrMagnitude < 0.1f){
+			mState = PlayerState.Docked;
+		}
 	}
 
 	void updateNavigation(){
@@ -160,8 +188,6 @@ public class PlayerController : CWMonoBehaviour {
 
 		if(mClosestStation != null){
 			mCanDock = (transform.position - mClosestStation.getDockPosition()).sqrMagnitude <= (mClosestStation.getDistanceSqr());
-
-			DEBUGLABEL.text = "CanDock: " + mCanDock + " Docking: " + mDOCK_ENABLED + "\nDistance: " + (transform.position - mClosestStation.getDockPosition()).sqrMagnitude + ", Required: " + (mClosestStation.getDistanceSqr());
 		}
 	}
 
