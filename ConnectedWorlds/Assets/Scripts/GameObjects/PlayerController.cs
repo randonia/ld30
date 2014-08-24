@@ -157,7 +157,7 @@ public class PlayerController : CWMonoBehaviour {
 		GO_mainCamera.transform.position = Vector3.zero;
 		GO_mainCamera.transform.Translate(transform.position.x, transform.position.y, kCamZ);
 
-		if(mShowBuyMenu && mState != PlayerState.Docked){
+		if(mShowBuyMenu && mState != PlayerState.Docked && mClosestStation != null){
 			mClosestStation.GetComponent<StationController>().tearDownShopPanel();
 		}
 		mShowBuyMenu = mState == PlayerState.Docked;
@@ -260,8 +260,10 @@ public class PlayerController : CWMonoBehaviour {
 		if(mFuelLevel <= 0.0f){
 			mState = PlayerState.FuelBoned;
 		}
-		if(mClosestStation != null){
+		if(mClosestStation != null && mClosestStation.gameObject == mDestinationStation){
 			mCanDock = (transform.position - mClosestStation.getDockPosition()).sqrMagnitude <= (mClosestStation.getDistanceSqr());
+		} else {
+			mCanDock = false;
 		}
 
 		if(mDestinationStation != null){
@@ -323,6 +325,15 @@ public class PlayerController : CWMonoBehaviour {
 			mCredits -= itemRow.credits;
 			mState = PlayerState.Navigation;
 			mDOCK_ENABLED = false;
+
+			GameObject[] all_stations = GameObject.FindGameObjectsWithTag("Station");
+			GameObject oldStation = mDestinationStation;
+			while(mDestinationStation == oldStation){
+				int randIndex = (int)(Random.value * all_stations.Length);
+				mDestinationStation = all_stations[randIndex];
+			}
+			mClosestStation.GetComponent<StationController>().tearDownShopPanel();
+			mClosestStation = null;
 			return true;
 		}
 		return false;

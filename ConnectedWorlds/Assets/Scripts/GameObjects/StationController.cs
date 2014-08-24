@@ -65,6 +65,7 @@ public class StationController : CWMonoBehaviour {
 
 	void Awake(){
 		setFlags(ObjectFlags.STATION | ObjectFlags.TEAM_NEUTRAL);
+		gameObject.name = "station_01_" + Random.Range(0.0f, 100.0f);
 	}
 
 	// Use this for initialization
