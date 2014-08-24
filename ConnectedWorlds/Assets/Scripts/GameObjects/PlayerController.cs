@@ -37,6 +37,8 @@ public class PlayerController : CWMonoBehaviour {
 
 	public float healthPercent {get{return mHealth;}}
 	private UILabel DEBUGLABEL;
+	public int mCredits = 100;
+	public float mHealCredits = 0.0f;
 
 	// Rendering
 	private bool mRightFacing = true;
@@ -157,7 +159,16 @@ public class PlayerController : CWMonoBehaviour {
 	#region Update methods
 
 	void updateDocked(){
-
+		if(mHealth < 1.0f){
+			if(mCredits >= 10){
+				mHealth = Mathf.Min(mHealth + 0.001f, 1.0f);
+				mHealCredits -= 0.1f;
+				if(mHealCredits <= 0){
+					mCredits -= 10;
+					mHealCredits = 10.0f;
+				}
+			}
+		}
 	}
 
 	void updateDocking(){
