@@ -48,6 +48,8 @@ public class PlayerController : CWMonoBehaviour {
 	public float healthPercent {get{return mHealth;}}
 	private UILabel DEBUGLABEL;
 	public int mCredits = 100;
+	public Inventory.Row mCurrentItem;
+	public int CargoHold {get{return mCurrentItem.quantity;}}
 	public float mHealCredits = 0.0f;
 
 	// Rendering
@@ -269,6 +271,17 @@ public class PlayerController : CWMonoBehaviour {
 
 	public void OnBuyDronesClick(){
 		Debug.Log("Drones clicked!");
+	}
+
+	public bool BuyItem(Inventory.Row itemRow){
+		if(mCredits >= itemRow.credits){
+			mCurrentItem = itemRow;
+			mCredits -= itemRow.credits;
+			mState = PlayerState.Navigation;
+			mDOCK_ENABLED = false;
+			return true;
+		}
+		return false;
 	}
 
 	public void toggleToolTip(){

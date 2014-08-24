@@ -8,12 +8,17 @@ public class Inventory{
 		public string itemTitle;
 		public string iconName;
 		public int quantity;
-		public int creditsEach;
+		public int credits;
+
 		public Row(string title, string icon, int num, int credits){
 			itemTitle = title;
 			iconName = icon;
 			quantity = num;
-			creditsEach = credits;
+			this.credits = credits;
+		}
+
+		public bool isEmpty(){
+			return quantity == 0;
 		}
 	}
 

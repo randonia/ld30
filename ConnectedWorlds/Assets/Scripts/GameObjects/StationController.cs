@@ -7,8 +7,10 @@ public class StationController : CWMonoBehaviour {
 
 
 	#region PREFABS
+	public GameObject GO_Player;
 	public Object GO_LRPREFAB;
 	public GameObject GO_RowPrefab;
+
 	#endregion
 
 	// The offset of the actual "Dock Point" where a player can dock
@@ -34,7 +36,7 @@ public class StationController : CWMonoBehaviour {
 			newPrefab.transform.Find("title").GetComponent<UILabel>().text = row.itemTitle;
 			newPrefab.transform.Find("icon_back/item_icon").GetComponent<UISprite>().spriteName = row.iconName;
 			newPrefab.transform.Find("quantity").GetComponent<UILabel>().text = row.quantity.ToString();
-			newPrefab.transform.Find("price").GetComponent<UILabel>().text = row.creditsEach.ToString();
+			newPrefab.transform.Find("price").GetComponent<UILabel>().text = row.credits.ToString();
 			mCreatedMenuItemsToBeDestroyed.Push(newPrefab);
 			EventDelegate.Set(newPrefab.transform.Find("buy_button").GetComponent<UIButton>().onClick, buyInvItem);
 		}
@@ -48,7 +50,17 @@ public class StationController : CWMonoBehaviour {
 	}
 
 	public void buyInvItem(){
-		Debug.Log("OMG IT WORKED?");
+		GameObject lastHit = UICamera.hoveredObject.transform.parent.gameObject;
+		
+		string title = lastHit.transform.Find("title").GetComponent<UILabel>().text;
+		string spriteName = lastHit.transform.Find("icon_back/item_icon").GetComponent<UISprite>().spriteName;
+		int quantityStr = int.Parse(lastHit.transform.Find("quantity").GetComponent<UILabel>().text);
+		int priceStr = int.Parse(lastHit.transform.Find("price").GetComponent<UILabel>().text);
+
+		Debug.Log(title + "," + spriteName + "," + quantityStr + "," + priceStr);
+		Inventory.Row newItemRow = new Inventory.Row(title, spriteName, quantityStr, priceStr);
+
+		GO_Player.GetComponent<PlayerController>().BuyItem(newItemRow);
 	}
 
 	void Awake(){
@@ -65,6 +77,8 @@ public class StationController : CWMonoBehaviour {
 		mNearbyShips = new List<GameObject>();
 		mLineRenderers = new List<GameObject>();
 		mCreatedMenuItemsToBeDestroyed = new Stack<GameObject>();
+		GO_Player = GameObject.Find("Player");
+
 	}
 	
 	// Update is called once per frame
