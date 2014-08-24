@@ -21,6 +21,7 @@ public class StationController : CWMonoBehaviour {
 	private List<GameObject> mNearbyShips;
 	private List<GameObject> mLineRenderers;
 
+	private Stack<GameObject> mCreatedMenuItemsToBeDestroyed;
 	public UIAtlas mMyAtlas;
 
 	// Sets up the shop panel with this Station's inventory!
@@ -34,9 +35,16 @@ public class StationController : CWMonoBehaviour {
 			newPrefab.transform.Find("icon_back/item_icon").GetComponent<UISprite>().spriteName = row.iconName;
 			newPrefab.transform.Find("quantity").GetComponent<UILabel>().text = row.quantity.ToString();
 			newPrefab.transform.Find("price").GetComponent<UILabel>().text = row.creditsEach.ToString();
+			mCreatedMenuItemsToBeDestroyed.Push(newPrefab);
 			EventDelegate.Set(newPrefab.transform.Find("buy_button").GetComponent<UIButton>().onClick, buyInvItem);
 		}
 		invGrid.GetComponent<UIGrid>().Reposition();
+	}
+
+	public void tearDownShopPanel(){
+		while(mCreatedMenuItemsToBeDestroyed.Count > 0){
+			GameObject.Destroy(mCreatedMenuItemsToBeDestroyed.Pop());
+		}
 	}
 
 	public void buyInvItem(){
@@ -56,6 +64,7 @@ public class StationController : CWMonoBehaviour {
 
 		mNearbyShips = new List<GameObject>();
 		mLineRenderers = new List<GameObject>();
+		mCreatedMenuItemsToBeDestroyed = new Stack<GameObject>();
 	}
 	
 	// Update is called once per frame

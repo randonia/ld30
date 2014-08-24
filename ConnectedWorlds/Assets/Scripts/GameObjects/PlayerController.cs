@@ -144,7 +144,9 @@ public class PlayerController : CWMonoBehaviour {
 		GO_mainCamera.transform.position = Vector3.zero;
 		GO_mainCamera.transform.Translate(transform.position.x, transform.position.y, kCamZ);
 
-
+		if(mShowBuyMenu && mState != PlayerState.Docked){
+			mClosestStation.GetComponent<StationController>().tearDownShopPanel();
+		}
 		mShowBuyMenu = mState == PlayerState.Docked;
 
 		DrawDebug();
