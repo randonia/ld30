@@ -8,7 +8,8 @@ public class PlayerController : CWMonoBehaviour {
 		Navigation,
 		Docking,
 		Docked,
-		Dead
+		Dead,
+		FuelBoned
 	}
 
 	#region Gameobject References
@@ -39,6 +40,8 @@ public class PlayerController : CWMonoBehaviour {
 
 	public bool mShowBuyMenu = true;
 
+
+	public float mFuelLevel = 1.0f;
 	public bool CanBuyDrones {get{return mCredits >= 25;}}
 	public int NumDrones {get{return mDroneCount;}}
 	private int mDroneCount;
@@ -163,12 +166,19 @@ public class PlayerController : CWMonoBehaviour {
 			case PlayerState.Docked:
 				updateDocked();
 				break;
+			case PlayerState.FuelBoned:
+				updateFuelBoned();
+				break;
 			default:
 				break;
 		}
 	}
 
 	#region Update methods
+
+	void updateFuelBoned(){
+
+	}
 
 	void updateDocked(){
 		if(mHealth < 1.0f){
@@ -195,13 +205,19 @@ public class PlayerController : CWMonoBehaviour {
 	void updateNavigation(){
 		// Translation
 		float thrustScale = 5.0f;
+		Vector2 thrustVec = Vector2.zero;
 		if(!mTVC_ENABLED || mTempTVC_DISABLE){
-			Vector2 thrustVec = new Vector2(Input.GetAxis("horizontal"), Input.GetAxis ("vertical"));
+			thrustVec = new Vector2(Input.GetAxis("horizontal"), Input.GetAxis ("vertical"));
 			rigidbody2D.AddForce(thrustVec * thrustScale);
 		} else {
-			rigidbody2D.AddForce(-rigidbody2D.velocity * thrustScale * 0.2f);
+			thrustVec = -rigidbody2D.velocity * thrustScale * 0.2f;
+			rigidbody2D.AddForce(thrustVec);
+			thrustVec.Normalize();
 		}
-
+		mFuelLevel -= (thrustVec.sqrMagnitude * 0.000083f);
+		if(mFuelLevel <= 0.0f){
+			mState = PlayerState.FuelBoned;
+		}
 		if(mClosestStation != null){
 			mCanDock = (transform.position - mClosestStation.getDockPosition()).sqrMagnitude <= (mClosestStation.getDistanceSqr());
 		}
