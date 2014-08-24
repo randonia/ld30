@@ -27,6 +27,8 @@ public class PlayerController : CWMonoBehaviour {
 
 	#region Member variables
 
+	// For data binding
+	public string Velocity {get{return rigidbody2D.velocity.magnitude.ToString("F3") + "m/s";}}
 	private PlayerState mState;
 
 	private UILabel DEBUGLABEL;
