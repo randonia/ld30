@@ -32,7 +32,7 @@ public class PlayerController : CWMonoBehaviour {
 
 	// For data binding
 	public string VelocityString {get{return rigidbody2D.velocity.magnitude.ToString("F2") + "m/s";}}
-	public float VelocityFloatForCamera {get{float mag = rigidbody2D.velocity.magnitude; Debug.Log(Mathf.Pow(mag, 0.5f) + 3); return Mathf.Min(Mathf.Max(7.5f, Mathf.Pow(mag, 0.5f) + 3), 15.0f);}}
+	public float VelocityFloatForCamera {get{float mag = rigidbody2D.velocity.magnitude; return Mathf.Min(Mathf.Max(7.5f, Mathf.Pow(mag, 0.5f) + 3), 15.0f);}}
 	private PlayerState mState;
 
 	public float healthPercent {get{return mHealth;}}
