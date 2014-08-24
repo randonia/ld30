@@ -10,10 +10,9 @@ Project Source Code Information:
 
 
 Controls:  
-+ A - Shipwise Up  
-+ D - Shipwise Down  
-+ W - Throttle Increase  
-+ S - Throttle Decrease  
-+ R - Toggle SAS (Stablization)  
++ W - Move ship up  
++ S - Move ship down  
++ A - Move ship left  
++ D - Move ship right  
 + T - Toggle TVC (Thrust Vector Control)  
 + G - Toggle Docking procedures  

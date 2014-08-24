@@ -170,20 +170,10 @@ public class PlayerController : CWMonoBehaviour {
 		// Translation
 		float thrustScale = 5.0f;
 		if(!mTVC_ENABLED || mTempTVC_DISABLE){
-			Vector2 thrustVec = new Vector2(Input.GetAxis("thrust"), Input.GetAxis ("strafe"));
-			rigidbody2D.AddForce(transform.right * thrustVec.x * thrustScale);
-			rigidbody2D.AddForce(transform.up * thrustVec.y * thrustScale);
+			Vector2 thrustVec = new Vector2(Input.GetAxis("horizontal"), Input.GetAxis ("vertical"));
+			rigidbody2D.AddForce(thrustVec * thrustScale);
 		} else {
 			rigidbody2D.AddForce(-rigidbody2D.velocity * thrustScale * 0.2f);
-		}
-
-		// Rotation
-		float rotScale = 0.35f;
-		if(!mSAS_ENABLED || mTempSAS_DISABLE){
-			float rotAmount = Input.GetAxis("rotate");
-			rigidbody2D.AddTorque(rotAmount * rotScale);
-		} else {
-			rigidbody2D.AddTorque(-(rigidbody2D.angularVelocity * rotScale * 0.1f));
 		}
 
 		if(mClosestStation != null){
