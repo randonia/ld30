@@ -40,7 +40,7 @@ public class StationController : CWMonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		Debug.Log("Object " + other.gameObject.name + " entered station trigger zone");
 		CWMonoBehaviour cwmbOther = other.gameObject.GetComponent<CWMonoBehaviour>();
-		if (cwmbOther.checkFlags(ObjectFlags.SHIP))
+		if (cwmbOther.checkFlags(ObjectFlags.PLAYER))
 		{
 			addShip(other.gameObject);
 		}

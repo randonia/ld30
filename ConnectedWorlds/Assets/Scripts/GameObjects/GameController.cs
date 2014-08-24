@@ -6,6 +6,7 @@ namespace ConnectedWorldsEngine
 {
 	public static class ObjectFlags{
 		public const uint NONE = 0;
+		public const uint PLAYER = 1;
 		public const uint SHIP = 2;
 		public const uint STATION = 4;
 		public const uint ENVIRONMENT = 8;

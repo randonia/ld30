@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using ConnectedWorldsEngine;
 
@@ -69,7 +69,7 @@ public class PlayerController : CWMonoBehaviour {
 	#endregion
 
 	void Awake() {
-		setFlags(ObjectFlags.SHIP | ObjectFlags.TEAM_PLAYER);
+		setFlags(ObjectFlags.SHIP | ObjectFlags.TEAM_PLAYER | ObjectFlags.PLAYER);
 		mState = PlayerState.Navigation;
 	}
 
