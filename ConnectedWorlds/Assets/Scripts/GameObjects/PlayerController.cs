@@ -28,6 +28,7 @@ public class PlayerController : CWMonoBehaviour {
 
 
 	public GameObject GO_indicator;
+	public GameObject GO_indicator_dist;
 	public bool shouldIndicate {get{return mDestinationStation != null && !mCanDock && !mDOCK_ENABLED;}}
 	public GameObject mDestinationStation;
 
@@ -209,6 +210,7 @@ public class PlayerController : CWMonoBehaviour {
 			GameObject.Instantiate(PREFAB_EXPLOSION, transform.position + transform.right * 3, transform.rotation);
 			GameObject.Instantiate(PREFAB_EXPLOSION, transform.position + transform.right * -2, transform.rotation);
 			gameObject.rigidbody2D.velocity = Vector2.zero;
+			rigidbody2D.AddTorque(30.0f);
 			GameObject.Destroy(gameObject, 2.0f);
 			PREFAB_EXPLOSION = null;
 			mShowToolTip = true;
@@ -271,6 +273,8 @@ public class PlayerController : CWMonoBehaviour {
 			Vector3 dir = (mDestinationStation.transform.position - transform.position).normalized;
 			GO_indicator.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90.0f);
 			GO_indicator.transform.localPosition = dir * 175.0f;
+			GO_indicator_dist.transform.localPosition = dir * 140.0f;
+			GO_indicator_dist.GetComponent<UILabel>().text = ((mDestinationStation.transform.position - transform.position).magnitude/100.0f).ToString("F2") + "km";
 		}
 	}
 
