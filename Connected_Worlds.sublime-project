@@ -1,0 +1,25 @@
+{
+	"folders":
+	[
+		{
+			"path": "ConnectedWorlds/Assets",
+			"file_exclude_patterns": [
+				"*.csproj",
+				"*.meta",
+				"*.sln",
+				"*.suo",
+				"*.user",
+				"*.userprefs",
+				"*.pidb",
+				"*.prefab"
+			],
+			"folder_exclude_patterns":[
+				"Atlaii",
+				"Materials",
+				"Prefabs",
+				"Scenes",
+				"Textures"
+			]
+		}
+	]
+}
