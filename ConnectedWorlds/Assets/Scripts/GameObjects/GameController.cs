@@ -23,9 +23,11 @@ public class CWMonoBehaviour : MonoBehaviour{
 	protected uint mObjectFlags;
 	protected float mHealth = 1.0f;
 	protected int mHitPointsVisible = 100;
+	protected bool mAlive = true;
 
 	public void takeDamage(float dam){
-
+		mHealth -= dam;
+		mAlive = mHealth > 0.0f;
 	}
 
 	public bool checkFlags(uint flagsToCheck){

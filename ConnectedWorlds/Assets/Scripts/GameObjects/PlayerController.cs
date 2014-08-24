@@ -7,7 +7,8 @@ public class PlayerController : CWMonoBehaviour {
 	private enum PlayerState { 
 		Navigation,
 		Docking,
-		Docked
+		Docked,
+		Dead
 	}
 
 	#region Gameobject References
@@ -30,9 +31,11 @@ public class PlayerController : CWMonoBehaviour {
 	#region Member variables
 
 	// For data binding
-	public string Velocity {get{return rigidbody2D.velocity.magnitude.ToString("F2") + "m/s";}}
+	public string VelocityString {get{return rigidbody2D.velocity.magnitude.ToString("F2") + "m/s";}}
+	public float VelocityFloatForCamera {get{float mag = rigidbody2D.velocity.magnitude; Debug.Log(Mathf.Pow(mag, 0.5f) + 3); return Mathf.Min(Mathf.Max(7.5f, Mathf.Pow(mag, 0.5f) + 3), 15.0f);}}
 	private PlayerState mState;
 
+	public float healthPercent {get{return mHealth;}}
 	private UILabel DEBUGLABEL;
 
 	// Rendering
@@ -86,7 +89,10 @@ public class PlayerController : CWMonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if(!mAlive){
+			mState = PlayerState.Dead;
+			return;
+		}
 		// Controls
 		if(Input.GetKeyDown(KeyCode.T))
 		{
@@ -144,7 +150,7 @@ public class PlayerController : CWMonoBehaviour {
 				updateDocked();
 				break;
 			default:
-				Debug.Log("Uh oh");
+				Debug.Log("Uh oh " + mState);
 				break;
 		}
 	}

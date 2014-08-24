@@ -80,7 +80,7 @@ public class DroneFighterController : CWMonoBehaviour {
 		Vector3 dir = ((target.transform.position + randomLead) - transform.position) / distance;
 		GameObject proj = (GameObject)GameObject.Instantiate(PREFAB_BULLET, gunPosition, Quaternion.identity);
 		float rot = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-		proj.GetComponent<Projectile>().Initialize((Vector2)dir, bulletVelocity, 5.0f, ObjectFlags.TEAM_ENEMY, 0, rot);
+		proj.GetComponent<Projectile>().Initialize((Vector2)dir, bulletVelocity, 5.0f, ObjectFlags.TEAM_PLAYER, 0, rot);
 	}
 
 	void perceptionEnter(GameObject other){
