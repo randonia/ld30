@@ -12,7 +12,7 @@ public class PerceptionTriggerController : CWMonoBehaviour {
 	public dOnPerceptExit doPerceptExit;
 
 	void Awake(){
-		setFlags(ObjectFlags.PERCEPTION_SHIP | ObjectFlags.TEAM_PLAYER);
+		setFlags(ObjectFlags.PERCEPTION_SHIP);
 	}
 
 	// Use this for initialization

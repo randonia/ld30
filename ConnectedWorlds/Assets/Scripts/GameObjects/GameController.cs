@@ -11,9 +11,10 @@ namespace ConnectedWorldsEngine
 		public const uint STATION = 4;
 		public const uint OBSTACLE = 8;
 		public const uint PROJECTILE = 16;
-		public const uint TEAM_NEUTRAL = 32;
-		public const uint TEAM_PLAYER = 64;
-		public const uint TEAM_ENEMY = 128;
+		public const uint DRONE = 32;
+		public const uint TEAM_NEUTRAL = 64;
+		public const uint TEAM_PLAYER = 128;
+		public const uint TEAM_ENEMY = 512;
 		public const uint PERCEPTION_SHIP = 1024;
 	}
 }
