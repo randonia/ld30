@@ -34,8 +34,7 @@ public class StationController : CWMonoBehaviour {
 			newPrefab.transform.Find("icon_back/item_icon").GetComponent<UISprite>().spriteName = row.iconName;
 			newPrefab.transform.Find("quantity").GetComponent<UILabel>().text = row.quantity.ToString();
 			newPrefab.transform.Find("price").GetComponent<UILabel>().text = row.creditsEach.ToString();
-			//newPrefab.transform.Find("buy_button").GetComponent<UIButton>().Click = new RoutedEventHandler(buyInvItem);
-
+			EventDelegate.Set(newPrefab.transform.Find("buy_button").GetComponent<UIButton>().onClick, buyInvItem);
 		}
 		invGrid.GetComponent<UIGrid>().Reposition();
 	}
