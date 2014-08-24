@@ -150,7 +150,6 @@ public class PlayerController : CWMonoBehaviour {
 				updateDocked();
 				break;
 			default:
-				Debug.Log("Uh oh " + mState);
 				break;
 		}
 	}

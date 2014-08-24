@@ -11,6 +11,9 @@ public class Projectile : CWMonoBehaviour {
 	protected Vector2 mDirection;
 	protected float mBirthTime = -1.0f;
 
+    protected LayerMask mMaskToHit = LayerMask.NameToLayer("ProjectileTargets");
+    protected LayerMask mPlayerMask = LayerMask.NameToLayer("Player");
+
 	protected void AwakeSetUp(){
 		setFlags(ObjectFlags.PROJECTILE);
 		mBirthTime = Time.time;
@@ -32,7 +35,6 @@ public class Projectile : CWMonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -40,8 +42,13 @@ public class Projectile : CWMonoBehaviour {
 		if(Time.time > mBirthTime + mTimeToLive){
 			removeProjectile();
 		}
-		transform.Translate(mDirection * mVelocity * Time.deltaTime);
 	}
+
+    void FixedUpdate(){
+    	rigidbody2D.MovePosition((Vector2)transform.position + mDirection * mVelocity * Time.deltaTime);
+    }
+
+
 
 	protected virtual void removeProjectile(){
 		GameObject.Destroy(gameObject);

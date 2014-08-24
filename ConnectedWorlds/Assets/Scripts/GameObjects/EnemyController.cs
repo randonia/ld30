@@ -80,6 +80,11 @@
 				case EnemyState.DIEING:
 					break;
 			}
+			if(mHealth <= 0.0f && mAlive){
+				Debug.Log("This enemy is dead " + gameObject.name);
+				mAlive = false;
+				mState = EnemyState.DIEING;
+			}
 			if(mLastPosition.x - transform.position.x != 0){
 				mRightFacing = mLastPosition.x > transform.position.x;
 			}
@@ -129,7 +134,7 @@
 		#endregion
 
 		void FireAt(GameObject target){
-			float bulletVelocity = 150.0f;
+			float bulletVelocity = 50.0f;
 			Vector3 randomLead = Vector3.zero;
 			float distance = (target.transform.position - transform.position).magnitude;
 
@@ -141,10 +146,11 @@
 			GameObject proj = (GameObject)GameObject.Instantiate(PREFAB_PROJECTILE, gunPosition, Quaternion.identity);
 			float rot = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 			proj.GetComponent<Projectile>().Initialize((Vector2)dir, bulletVelocity, 5.0f, ObjectFlags.TEAM_ENEMY, 0, rot);
+			Physics2D.IgnoreCollision(proj.collider2D, gameObject.collider2D);
 		}
 
 		void perceptionEnter(GameObject other){
-			Debug.Log("Perception enter for the Enemy");
+			Debug.Log("Perception enter for the Enemy: " +  other.name);
 			CWMonoBehaviour cwmb = other.GetComponent<CWMonoBehaviour>();
 			if(cwmb != null){
 				if(cwmb.checkFlags(ObjectFlags.PLAYER)){

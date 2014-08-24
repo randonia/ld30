@@ -69,25 +69,21 @@ public class DroneFighterController : CWMonoBehaviour {
 	}
 
 	void FireAt(GameObject target){
-		float bulletVelocity = 250.0f;
-		Vector3 randomLead = Vector3.zero;
-		float distance = (target.transform.position - transform.position).magnitude;
-
-		Rigidbody2D targetRB2D = target.GetComponent<Rigidbody2D>();
-		if(targetRB2D != null){
-			randomLead = targetRB2D.velocity.normalized;
-		}
-		Vector3 dir = ((target.transform.position + randomLead) - transform.position) / distance;
+		float bulletVelocity = 100.0f;
+		Vector3 dir = (target.transform.position - transform.position).normalized;
 		GameObject proj = (GameObject)GameObject.Instantiate(PREFAB_BULLET, gunPosition, Quaternion.identity);
+		Debug.DrawRay(transform.position, dir * 5.0f, Color.yellow);
 		float rot = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 		proj.GetComponent<Projectile>().Initialize((Vector2)dir, bulletVelocity, 5.0f, ObjectFlags.TEAM_PLAYER, 0, rot);
+		Debug.DrawRay(proj.transform.position, dir * 5.0f, Color.red);
+		Physics2D.IgnoreCollision(proj.collider2D, GO_Player.collider2D);
 	}
 
 	void perceptionEnter(GameObject other){
-		Debug.Log("Drone Engaged");
 		CWMonoBehaviour cwmb = other.GetComponent<CWMonoBehaviour>();
 		if(cwmb != null){
-			if(cwmb.checkFlags(ObjectFlags.TEAM_ENEMY)){
+			if(cwmb.checkFlags(ObjectFlags.TEAM_ENEMY | ObjectFlags.SHIP)){
+				Debug.Log("Drone engaged with " + other.name);
 				mCurrentTarget = other;
 			}
 		}
@@ -96,8 +92,9 @@ public class DroneFighterController : CWMonoBehaviour {
 	void perceptionExit(GameObject other){
 		CWMonoBehaviour cwmb = other.GetComponent<CWMonoBehaviour>();
 		if(cwmb != null){
-			if(cwmb.checkFlags(ObjectFlags.TEAM_ENEMY)){
+			if(cwmb.checkFlags(ObjectFlags.TEAM_ENEMY | ObjectFlags.SHIP)){
 				Debug.Log("Drone disengaged");
+				mCurrentTarget = null;
 			}
 		}
 	}
