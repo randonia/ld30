@@ -33,7 +33,6 @@
 		// Visuals
 		private bool mRightFacing = true;
 		private Vector2 mLastPosition;
-		private SpriteRenderer mSprite;
 
 		// State handling
 		private EnemyState mState;

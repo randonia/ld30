@@ -31,6 +31,10 @@ public class PlayerController : CWMonoBehaviour {
 
 	private UILabel DEBUGLABEL;
 
+	// Rendering
+	private bool mRightFacing = true;
+	private Vector2 mLastPosition;
+
 	// Thrust vector control
 	private bool mTVC_ENABLED = false;
 	private bool mTempTVC_DISABLE = false;
@@ -100,13 +104,41 @@ public class PlayerController : CWMonoBehaviour {
 		mDOCK_ENABLED = mDOCK_ENABLED && mCanDock && rigidbody2D.velocity.sqrMagnitude < 0.25f;
 		// Move to docking state
 		if(mDOCK_ENABLED) {
-			mState = PlayerState.Docking;
 			rigidbody2D.velocity = Vector2.zero;
+			if(mState != PlayerState.Docked){
+				mState = PlayerState.Docking;
+			}
 		}
 
 		toggleTVCButton();
 		toggleDockButton();
 
+		// Update movements
+		if(((Vector2)transform.position - mLastPosition).x != 0 &&
+			Input.GetAxis("horizontal") != 0.0f)
+		{
+			mRightFacing = Input.GetAxis("horizontal") < 0.0f;
+		}
+		Vector2 localScale = transform.localScale;
+		localScale.x = (mRightFacing)?-1:1;
+		transform.localScale = localScale;
+		mLastPosition = transform.position;
+
+		// Update the camera
+		GO_mainCamera.transform.position = Vector3.zero;
+		GO_mainCamera.transform.Translate(transform.position.x, transform.position.y, kCamZ);
+
+		if(mClosestStation != null){
+			DEBUGLABEL.text = "State: " + mState +
+				"\nDistance: " + (transform.position - mClosestStation.getDockPosition()).sqrMagnitude + 
+					", Required: " + (mClosestStation.getDistanceSqr()) +
+					"\nSpeed: " + rigidbody2D.velocity.sqrMagnitude +
+					"\nCalculating docked: " + (mClosestStation.getDockPosition() - transform.position).sqrMagnitude;
+		}
+		DrawDebug();
+	}
+
+	void FixedUpdate(){
 		switch (mState){
 			case PlayerState.Docking:
 				updateDocking();
@@ -121,19 +153,6 @@ public class PlayerController : CWMonoBehaviour {
 				Debug.Log("Uh oh");
 				break;
 		}
-
-		// Update the camera
-		GO_mainCamera.transform.position = Vector3.zero;
-		GO_mainCamera.transform.Translate(transform.position.x, transform.position.y, kCamZ);
-
-		if(mClosestStation != null){
-			DEBUGLABEL.text = "CanDock: " + mCanDock + " Docking: " + mDOCK_ENABLED + 
-				"\nState: " + mState +
-				"\nDistance: " + (transform.position - mClosestStation.getDockPosition()).sqrMagnitude + 
-					", Required: " + (mClosestStation.getDistanceSqr()) +
-					"\nSpeed: " + rigidbody2D.velocity.sqrMagnitude;
-		}
-		DrawDebug();
 	}
 
 	#region Update methods
@@ -145,7 +164,7 @@ public class PlayerController : CWMonoBehaviour {
 	void updateDocking(){
 		// Move towards the point
 		rigidbody2D.MovePosition(transform.position + (mClosestStation.getDockPosition() - transform.position) * Time.deltaTime);
-		if ((mClosestStation.getDockPosition() - transform.position).sqrMagnitude < 0.1f){
+		if ((mClosestStation.getDockPosition() - transform.position).sqrMagnitude < 0.01f){
 			mState = PlayerState.Docked;
 		}
 	}
