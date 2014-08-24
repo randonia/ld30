@@ -21,12 +21,16 @@ public class PlayerController : CWMonoBehaviour {
 	public GameObject GO_dockInside;
 	public GameObject GO_dockLabel;
 
+	public GameObject GO_indicator;
+	public bool shouldIndicate {get{return mDestinationStation != null && !mCanDock && !mDOCK_ENABLED;}}
+	public GameObject mDestinationStation;
+
 	#endregion
 
 	#region Member variables
 
 	// For data binding
-	public string Velocity {get{return rigidbody2D.velocity.magnitude.ToString("F3") + "m/s";}}
+	public string Velocity {get{return rigidbody2D.velocity.magnitude.ToString("F2") + "m/s";}}
 	private PlayerState mState;
 
 	private UILabel DEBUGLABEL;
@@ -171,6 +175,12 @@ public class PlayerController : CWMonoBehaviour {
 
 		if(mClosestStation != null){
 			mCanDock = (transform.position - mClosestStation.getDockPosition()).sqrMagnitude <= (mClosestStation.getDistanceSqr());
+		}
+
+		if(mDestinationStation != null){
+			Vector3 dir = (mDestinationStation.transform.position - transform.position).normalized;
+			GO_indicator.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90.0f);
+			GO_indicator.transform.localPosition = dir * 175.0f;
 		}
 	}
 

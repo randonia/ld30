@@ -81,7 +81,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hud_button_square
-    x: 481
+    x: 499
     y: 504
     width: 8
     height: 8
@@ -94,8 +94,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hud_button_square_inside
-    x: 491
-    y: 504
+    x: 258
+    y: 486
     width: 8
     height: 8
     borderLeft: 0
@@ -106,6 +106,19 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: hud_indicator
+    x: 481
+    y: 502
+    width: 16
+    height: 10
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 3
+    paddingBottom: 3
   - name: QuartzMSfont
     x: 0
     y: 256
