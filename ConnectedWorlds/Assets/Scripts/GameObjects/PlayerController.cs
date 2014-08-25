@@ -278,6 +278,7 @@ public class PlayerController : CWMonoBehaviour {
 			thrustVec *= 1.5f;
 		}
 		mFuelLevel -= (thrustVec.sqrMagnitude * 0.000083f);
+		mFuelLevel -= 0.00005f;
 		if(mFuelLevel <= 0.0f){
 			mState = PlayerState.FuelBoned;
 		}
