@@ -16840,7 +16840,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3009
+  startingRenderQueue: 3007
   mAlpha: 1
   mClipping: 3
   mClipRange: {x: 0, y: .318664551, z: 519.995117, w: 460.009766}
@@ -56324,7 +56324,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1348148753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9511.66309, z: 0}
+  m_LocalPosition: {x: 0, y: 11048.6162, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418113630}
@@ -63198,7 +63198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source:
     mTarget: {fileID: 991494707}
-    mName: VelocityFloatForCamera
+    mName: CameraSize
   target:
     mTarget: {fileID: 1527111180}
     mName: orthographicSize

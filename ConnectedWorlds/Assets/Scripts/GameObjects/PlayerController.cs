@@ -38,7 +38,9 @@ public class PlayerController : CWMonoBehaviour {
 
 	// For data binding
 	public string VelocityString {get{return rigidbody2D.velocity.magnitude.ToString("F2") + "m/s";}}
-	public float VelocityFloatForCamera {get{float mag = rigidbody2D.velocity.magnitude; return Mathf.Min(Mathf.Max(7.5f, Mathf.Pow(mag, 0.5f) + 3), 15.0f);}}
+	public float CameraSize { get{return mCameraSize;}}
+	private float mCameraSize = 7.5f;
+	private float mCameraAccel = 0.0f;
 	private PlayerState mState;
 
 	public bool mShowToolTip = false;
@@ -117,6 +119,19 @@ public class PlayerController : CWMonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.F)){
 			deployDrone();
 		}
+
+		if(Input.GetKey(KeyCode.Q)){
+			mCameraAccel += 0.01f;
+		}
+		if(Input.GetKey(KeyCode.E)){
+			mCameraAccel -= 0.01f;
+		}
+		if(!(Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E)))
+		{
+			mCameraAccel *= 0.8f;
+		}
+		mCameraSize = Mathf.Max(Mathf.Min(mCameraSize + mCameraAccel, 100.0f), 4.0f);
+		
 
 		if(Input.GetKeyDown(KeyCode.T))
 		{
@@ -258,6 +273,9 @@ public class PlayerController : CWMonoBehaviour {
 			thrustVec = -rigidbody2D.velocity * thrustScale * 0.2f;
 			rigidbody2D.AddForce(thrustVec);
 			thrustVec.Normalize();
+		}
+		if(mTVC_ENABLED){
+			thrustVec *= 1.5f;
 		}
 		mFuelLevel -= (thrustVec.sqrMagnitude * 0.000083f);
 		if(mFuelLevel <= 0.0f){
