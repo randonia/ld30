@@ -248,7 +248,7 @@ public class PlayerController : CWMonoBehaviour {
 			}
 		}
 		if(mCurrentItem.quantity > 0){
-			mCredits += (mCurrentItem.quantity / 10) * mCurrentItem.credits;
+			mCredits += (int)((mCurrentItem.quantity * 0.5f) * mCurrentItem.credits);
 			mCurrentItem.quantity = 0;
 		}
 	}
