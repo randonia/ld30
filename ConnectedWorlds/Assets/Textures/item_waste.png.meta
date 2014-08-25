@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 2ebf38ca99ab9f2468419c8ce1fa4efc
+guid: 75f93c7bed0aad74b999d51b4a18d919
 TextureImporter:
   fileIDToRecycleName:
-    21300000: obs_asteroid_32
+    21300000: item_waste
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 2ebf38ca99ab9f2468419c8ce1fa4efc
+guid: 072b9e3d74b52864e9f43a29e7da9d89
 TextureImporter:
   fileIDToRecycleName:
-    21300000: obs_asteroid_32
+    21300000: item_fuelrods
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

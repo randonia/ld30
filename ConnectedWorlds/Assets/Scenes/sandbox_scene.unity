@@ -2936,7 +2936,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &79020603
 CircleCollider2D:
@@ -5464,7 +5464,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &119460922
 CircleCollider2D:
@@ -6250,7 +6250,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 14.5714283
+  aspectRatio: 24.2380943
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -7344,7 +7344,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &172117843
 CircleCollider2D:
@@ -16994,50 +16994,6 @@ Prefab:
   m_RootGameObject: {fileID: 1424532530}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1001 &421838446
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
-      propertyPath: m_RootOrder
-      value: 22
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
-  m_RootGameObject: {fileID: 449529502}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &423770261
 GameObject:
   m_ObjectHideFlags: 0
@@ -17874,7 +17830,7 @@ Prefab:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
-  m_PrefabInternal: {fileID: 421838446}
+  m_PrefabInternal: {fileID: 746011324}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 449529503}
@@ -17894,7 +17850,7 @@ GameObject:
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
-  m_PrefabInternal: {fileID: 421838446}
+  m_PrefabInternal: {fileID: 746011324}
   m_GameObject: {fileID: 449529502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9, y: 0, z: 0}
@@ -17907,7 +17863,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac,
     type: 2}
-  m_PrefabInternal: {fileID: 421838446}
+  m_PrefabInternal: {fileID: 746011324}
   m_GameObject: {fileID: 449529502}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -17931,7 +17887,7 @@ SpriteRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 21200000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac,
     type: 2}
-  m_PrefabInternal: {fileID: 421838446}
+  m_PrefabInternal: {fileID: 746011324}
   m_GameObject: {fileID: 449529502}
   m_Enabled: 1
   m_CastShadows: 0
@@ -17954,7 +17910,7 @@ CircleCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 5800000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac,
     type: 2}
-  m_PrefabInternal: {fileID: 421838446}
+  m_PrefabInternal: {fileID: 746011324}
   m_GameObject: {fileID: 449529502}
   m_Enabled: 1
   m_Material: {fileID: 0}
@@ -17966,7 +17922,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400002, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac,
     type: 2}
-  m_PrefabInternal: {fileID: 421838446}
+  m_PrefabInternal: {fileID: 746011324}
   m_GameObject: {fileID: 449529502}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -17977,14 +17933,14 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!120 &449529508
 LineRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 12000000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac,
     type: 2}
-  m_PrefabInternal: {fileID: 421838446}
+  m_PrefabInternal: {fileID: 746011324}
   m_GameObject: {fileID: 449529502}
   m_Enabled: 1
   m_CastShadows: 1
@@ -19997,7 +19953,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &484826477
 CircleCollider2D:
@@ -27407,7 +27363,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &679772390
 CircleCollider2D:
@@ -28706,7 +28662,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &714166804
 CircleCollider2D:
@@ -30120,6 +30076,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 75
+--- !u!1001 &746011324
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b2ca9e7e74b9ffb4482d9a91ee1974ac, type: 2}
+  m_RootGameObject: {fileID: 449529502}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1001 &747892373
 Prefab:
   m_ObjectHideFlags: 0
@@ -31936,7 +31936,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 33.1538467
+  aspectRatio: 38.5384598
   mType: 2
   mFillDirection: 4
   mFillAmount: 1
@@ -34026,7 +34026,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &850505951
 CircleCollider2D:
@@ -35761,7 +35761,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &890497305
 CircleCollider2D:
@@ -36388,7 +36388,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &906581793
 CircleCollider2D:
@@ -37948,7 +37948,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .0524934381
+  aspectRatio: .0434782617
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -44228,7 +44228,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &1083588601
 CircleCollider2D:
@@ -45621,7 +45621,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400012, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
       propertyPath: mHeight
-      value: 16
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
       propertyPath: mWidth
@@ -45637,11 +45637,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400012, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
       propertyPath: mWidth
-      value: 186
+      value: 278
       objectReference: {fileID: 0}
     - target: {fileID: 11400012, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
       propertyPath: aspectRatio
-      value: 11.625
+      value: 27.7999992
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
@@ -45818,7 +45818,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &1114029387
 CircleCollider2D:
@@ -45956,7 +45956,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 20.8571434
+  aspectRatio: 38.5384598
   mType: 2
   mFillDirection: 4
   mFillAmount: 1
@@ -48209,7 +48209,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &1167251385
 CircleCollider2D:
@@ -52730,7 +52730,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &1286928123
 CircleCollider2D:
@@ -55396,7 +55396,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &1335461418
 CircleCollider2D:
@@ -56324,7 +56324,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1348148753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 11048.6162, z: 0}
+  m_LocalPosition: {x: 0, y: 12105.2715, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418113630}
@@ -58167,7 +58167,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &1398380696
 CircleCollider2D:
@@ -59513,7 +59513,7 @@ Transform:
   m_PrefabInternal: {fileID: 1629805471}
   m_GameObject: {fileID: 1436686711}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -493.496094, y: -10.5041504, z: 0}
+  m_LocalPosition: {x: -529.496094, y: -10.5041504, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1774609700}
@@ -59771,7 +59771,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &1452336132
 CircleCollider2D:
@@ -65535,7 +65535,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &1565459726
 CircleCollider2D:
@@ -67765,7 +67765,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &1624307029
 CircleCollider2D:
@@ -68321,7 +68321,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -493.496094
+      value: -529.496094
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
       propertyPath: m_LocalPosition.y
@@ -68381,11 +68381,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
       propertyPath: aspectRatio
-      value: 14.5714283
+      value: 24.2380943
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
       propertyPath: mWidth
-      value: 306
+      value: 509
       objectReference: {fileID: 0}
     - target: {fileID: 11400010, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
       propertyPath: leftAnchor.target
@@ -68429,7 +68429,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
       propertyPath: mWidth
-      value: 431
+      value: 501
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
       propertyPath: mHeight
@@ -68437,7 +68437,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
       propertyPath: aspectRatio
-      value: 33.1538467
+      value: 38.5384598
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
+      propertyPath: mWidth
+      value: 501
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
+      propertyPath: mHeight
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
+      propertyPath: aspectRatio
+      value: 38.5384598
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0b2eaf764cd5dcc498274816bd1bec13, type: 2}
@@ -68614,7 +68626,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &1633977807
 CircleCollider2D:
@@ -70467,11 +70479,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400010, guid: df7390d50d06a4b4b893085286142266, type: 2}
       propertyPath: mHeight
-      value: 381
+      value: 460
       objectReference: {fileID: 0}
     - target: {fileID: 11400010, guid: df7390d50d06a4b4b893085286142266, type: 2}
       propertyPath: aspectRatio
-      value: .0524934381
+      value: .0434782617
       objectReference: {fileID: 0}
     - target: {fileID: 6500000, guid: df7390d50d06a4b4b893085286142266, type: 2}
       propertyPath: m_Size.x
@@ -74635,7 +74647,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &1797173695
 CircleCollider2D:
@@ -78249,7 +78261,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 11.625
+  aspectRatio: 27.7999992
   mType: 2
   mFillDirection: 4
   mFillAmount: 1
@@ -82245,7 +82257,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &2000554406
 CircleCollider2D:
@@ -86273,7 +86285,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!58 &2104415596
 CircleCollider2D:

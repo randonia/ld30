@@ -81,8 +81,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hud_button_square
-    x: 499
-    y: 504
+    x: 276
+    y: 438
     width: 8
     height: 8
     borderLeft: 3
@@ -94,8 +94,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hud_button_square_inside
-    x: 258
-    y: 486
+    x: 276
+    y: 426
     width: 8
     height: 8
     borderLeft: 0
@@ -107,8 +107,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hud_indicator
-    x: 481
-    y: 502
+    x: 258
+    y: 436
     width: 16
     height: 10
     borderLeft: 0
@@ -119,6 +119,123 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 3
     paddingBottom: 3
+  - name: item_blooanium
+    x: 258
+    y: 424
+    width: 16
+    height: 10
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 3
+    paddingBottom: 3
+  - name: item_fuelrods
+    x: 258
+    y: 393
+    width: 10
+    height: 14
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 1
+    paddingBottom: 1
+  - name: item_handhelds
+    x: 258
+    y: 448
+    width: 12
+    height: 15
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 2
+    paddingTop: 1
+    paddingBottom: 0
+  - name: item_pinklabel
+    x: 258
+    y: 376
+    width: 6
+    height: 15
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 5
+    paddingTop: 1
+    paddingBottom: 0
+  - name: item_potatos
+    x: 258
+    y: 409
+    width: 12
+    height: 13
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 2
+    paddingTop: 2
+    paddingBottom: 1
+  - name: item_scrapmetal
+    x: 481
+    y: 497
+    width: 16
+    height: 15
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 1
+    paddingBottom: 0
+  - name: item_veggies
+    x: 272
+    y: 448
+    width: 12
+    height: 15
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 1
+    paddingTop: 0
+    paddingBottom: 1
+  - name: item_waste
+    x: 499
+    y: 498
+    width: 10
+    height: 14
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 2
+    paddingBottom: 0
+  - name: obs_asteroid_32
+    x: 258
+    y: 465
+    width: 28
+    height: 29
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 2
+    paddingTop: 2
+    paddingBottom: 1
   - name: QuartzMSfont
     x: 0
     y: 256

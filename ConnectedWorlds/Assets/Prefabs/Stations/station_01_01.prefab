@@ -81,7 +81,7 @@ MonoBehaviour:
   GO_LRPREFAB: {fileID: 100000, guid: 6ab6e305b7fd2544bb2b087533e76004, type: 2}
   GO_RowPrefab: {fileID: 100010, guid: 7905e45386d96a248972e1470b2f4dee, type: 2}
   mDockOffset: {x: 0, y: -.75}
-  mAutoDockingDistance: 6
+  mAutoDockingDistance: 8
   mMyAtlas: {fileID: 0}
 --- !u!120 &12000000
 LineRenderer:

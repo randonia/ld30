@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 2ebf38ca99ab9f2468419c8ce1fa4efc
+guid: 77a8d61014a424c488331bdb6fb35fd1
 TextureImporter:
   fileIDToRecycleName:
-    21300000: obs_asteroid_32
+    21300000: item_scrapmetal
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

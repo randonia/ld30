@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 2ebf38ca99ab9f2468419c8ce1fa4efc
+guid: 41de0dbdd4878504bac718361156fdda
 TextureImporter:
   fileIDToRecycleName:
-    21300000: obs_asteroid_32
+    21300000: item_blooanium
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

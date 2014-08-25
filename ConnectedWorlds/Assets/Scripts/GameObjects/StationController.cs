@@ -71,9 +71,14 @@ public class StationController : CWMonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		mInventory = new Inventory();
-		mInventory.AddItem("test", "hud_indicator", 42, 32);
-		mInventory.AddItem("test2", "hud_indicator", 64, 23);
-		mInventory.AddItem("test3", "hud_button_square_inside", 64, 23);
+		mInventory.AddItem("Blooanium", "item_blooanium",	(int)Random.Range(36,62), 10);
+		mInventory.AddItem("Waste", "item_waste",			(int)Random.Range(30,50), 13);
+		mInventory.AddItem("Scrapmetal", "item_scrapmetal",	(int)Random.Range(20,300), 5);
+		mInventory.AddItem("Fuelrods", "item_fuelrods",		(int)Random.Range(36,44), 20);
+		mInventory.AddItem("Potatoes", "item_potatos",		(int)Random.Range(128,256), 2);
+		mInventory.AddItem("Handhelds", "item_handhelds",	(int)Random.Range(12,56), 64);
+		mInventory.AddItem("Pinklabel", "item_pinklabel",	(int)Random.Range(2,8), 96);
+		mInventory.AddItem("Veggies", "item_veggies",		(int)Random.Range(12,400), 2);
 
 		mNearbyShips = new List<GameObject>();
 		mLineRenderers = new List<GameObject>();
